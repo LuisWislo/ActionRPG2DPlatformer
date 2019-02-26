@@ -2,42 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Projectile : MonoBehaviour
 {
-    float projectileSpeed = 1f;
+    float projectileSpeed = 1.5f;
     private Transform target;
-    private Vector2 targetPos;
+    private Vector2 displacement;
 
     // Start is called before the first frame update
     void Start()
     {
         target = GameObject.FindGameObjectWithTag("Player").transform;
-       
-
-        targetPos = new Vector2(target.position.x,target.position.y);
-
-
-    }
+        displacement = new Vector2(target.localPosition.x - transform.localPosition.x, target.localPosition.y - transform.localPosition.y) * 2;
+        float zRotation = (float)System.Math.Atan((double)displacement.y / (double)displacement.x) * (180 / Mathf.PI);
+        if (zRotation < 0 && target.position.y > transform.position.y|| zRotation > 0 && target.position.y < transform.position.y) zRotation += 180;
+        //else if (zRotation > 0 && target.position.y < transform.position.y) zRotation += 180;
+        transform.Rotate(new Vector3(0f, 0f, zRotation));
+        
+        }
 
     // Update is called once per frame
     void Update()
     {
-       transform.position = Vector2.MoveTowards(transform.position, targetPos, projectileSpeed*Time.deltaTime);
+        //transform.Rotate(Vector3.RotateTowards(transform.position, target.position, 360f, 360f));
+        transform.position += transform.right * projectileSpeed * Time.deltaTime;
+        Destroy(gameObject, 8);
 
-        if (transform.position.Equals(targetPos))
-        {
-            Destroy(gameObject);
-        }
-           
-        Destroy(gameObject, 5);
     }
+
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Player"))
+        if (!collision.CompareTag("Enemy"))
         {
             Destroy(gameObject);
-        }   
-    }
+        }
 
+
+
+    }
 }
