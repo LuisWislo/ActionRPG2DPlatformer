@@ -20,6 +20,7 @@ public class Patroller : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collider)
     {
 
+
         if (GameObject.ReferenceEquals(collider.gameObject, leftWall))
         {
             direction = 1;

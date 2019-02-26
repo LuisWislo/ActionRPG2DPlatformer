@@ -22,8 +22,18 @@ public class EnemyBeing : MonoBehaviour
     {
         if (collision.CompareTag("Attack"))
         {
-            Instantiate(deathParticle, transform.position, Quaternion.identity);
-            Destroy(gameObject);
+            StartCoroutine(Die());
+            
         }
+    }
+
+    IEnumerator Die()
+    {
+        Instantiate(deathParticle, transform);
+        enabled = false;
+        GetComponent<Renderer>().enabled = false;
+        GetComponent<BoxCollider2D>().enabled = false;
+        yield return new WaitForSeconds(1);
+        Destroy(gameObject);
     }
 }

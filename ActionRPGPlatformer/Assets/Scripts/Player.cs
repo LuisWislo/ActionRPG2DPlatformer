@@ -105,7 +105,7 @@ public class Player : MonoBehaviour
             dashed = false;
         }
 
-        if (vertical < -0.5 && grounded)
+        if (vertical < -0.5 && grounded && !jabbing)
         {
             crouching = true;
             Crouch();
@@ -119,7 +119,7 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x + 0.5f * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
         }
-        if (Input.GetButtonDown("Jump") && !jabbing && !crouching)
+        if (Input.GetButtonDown("Jump") && !jabbing)
         {
             if (grounded)
             {
@@ -284,7 +284,7 @@ public class Player : MonoBehaviour
         capsule.offset = new Vector2(-0.02f, 0.038f);
         box.size = new Vector2(0.41f, 0.56f);
         box.offset = new Vector2(-0.02f,0.038f);
-        rb.velocity = Vector2.zero;
+        //rb.velocity = Vector2.zero;
 
     }
 }
