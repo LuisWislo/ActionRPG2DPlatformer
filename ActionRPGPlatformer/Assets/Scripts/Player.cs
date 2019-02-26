@@ -120,7 +120,7 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector2(facingVec * -3.5f, jumpForce);
             }
         }
-        if (Input.GetKeyDown(KeyCode.X) && !dashed && !grounded && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !jabbing)
+        if (Input.GetButtonDown("Fire2") && !dashed && !grounded && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !jabbing)
         {
             StartCoroutine(Dash());
         }
