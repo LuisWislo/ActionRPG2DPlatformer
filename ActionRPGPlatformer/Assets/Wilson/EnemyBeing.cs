@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBeing : MonoBehaviour
 {
+    public GameObject deathParticle; 
+
     // Start is called before the first frame update
     void Start()
     {
@@ -20,6 +22,7 @@ public class EnemyBeing : MonoBehaviour
     {
         if (collision.CompareTag("Attack"))
         {
+            Instantiate(deathParticle, transform.position, Quaternion.identity);
             Destroy(gameObject);
         }
     }

@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     private bool dashed;
     private bool jabbing;
     private bool poking;
+    private bool dashing;
     private float xLeft;
     private float xRight;
     private int facingVec;
@@ -50,6 +51,7 @@ public class Player : MonoBehaviour
         dashed = false;
         jabbing = false;
         poking = false;
+        dashing = false;
         xLeft = -0.085f;
         xRight = 0.125f;
         facingVec = 1;
@@ -69,8 +71,15 @@ public class Player : MonoBehaviour
         capsule.offset = defaultOSCapsule;
         box.offset = defaultOSBox;
         
+        if(rb.velocity.x > runSpeed && !dashing)
+        {
+            rb.velocity = new Vector2(runSpeed, rb.velocity.y);
+        } else if (rb.velocity.x < -runSpeed && !dashing)
+        {
+            rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
+        }
 
-        if(transform.position.y < -8)
+        if (transform.position.y < -8)
         {
             StartCoroutine(Die());
         }
@@ -106,7 +115,7 @@ public class Player : MonoBehaviour
             StartCoroutine(Poke());
         }
 
-        if ((Mathf.Abs(rb.velocity.x) < runSpeed) && !jabbing && !crouching)
+        if (!jabbing && !crouching)
         {
             rb.velocity = new Vector2(rb.velocity.x + 0.5f * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
         }
@@ -117,7 +126,7 @@ public class Player : MonoBehaviour
                 rb.velocity = new Vector2(0, jumpForce);
             } else if (walled && grndR && !grndL)
             {
-                rb.velocity = new Vector2(facingVec * -3.5f, jumpForce);
+                rb.velocity = new Vector2(facingVec * -4.5f, jumpForce);
             }
         }
         if (Input.GetButtonDown("Fire2") && !dashed && !grounded && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !jabbing)
@@ -166,9 +175,10 @@ public class Player : MonoBehaviour
 
     IEnumerator Dash()
     {
+        dashing = true;
         Instantiate(dashParticle, transform);
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * dashForce, Input.GetAxisRaw("Vertical") * dashForce), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * dashForce , Input.GetAxisRaw("Vertical") * dashForce), ForceMode2D.Impulse);
         dashed = true;
         rb.gravityScale = 0;
         yield return new WaitForSeconds(dashDuration);
@@ -181,6 +191,7 @@ public class Player : MonoBehaviour
         {
             rb.velocity = new Vector2(Input.GetAxis("Horizontal") * 6, Input.GetAxis("Vertical") * 6);
         }
+        dashing = false;
     }
 
     IEnumerator Jab()

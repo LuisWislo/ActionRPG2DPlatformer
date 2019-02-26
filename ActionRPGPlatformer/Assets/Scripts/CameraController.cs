@@ -19,21 +19,21 @@ public class CameraController : MonoBehaviour
     {
         if (player.enabled)
         {
-            if(transform.position.x - player.transform.position.x > 6)
+            if(transform.position.x - player.transform.position.x > 3.61)
             {
-                transform.position = new Vector3(transform.position.x - cameraSpeed, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x - cameraSpeed * Time.deltaTime, transform.position.y, transform.position.z);
             } else if (transform.position.x - player.transform.position.x < 0)
             {
-                transform.position = new Vector3(transform.position.x + cameraSpeed, transform.position.y, transform.position.z);
+                transform.position = new Vector3(transform.position.x + cameraSpeed * Time.deltaTime, transform.position.y, transform.position.z);
             }
 
-            if (transform.position.y - player.transform.position.y > 2)
+            if (transform.position.y - player.transform.position.y > 1)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y - 3 * cameraSpeed, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y - 1 * cameraSpeed * Time.deltaTime, transform.position.z);
             }
             else if (transform.position.y - player.transform.position.y < 0)
             {
-                transform.position = new Vector3(transform.position.x, transform.position.y + cameraSpeed, transform.position.z);
+                transform.position = new Vector3(transform.position.x, transform.position.y + cameraSpeed * Time.deltaTime, transform.position.z);
             }
 
             /*if (transform.position.x - player.transform.position.x > 6)
