@@ -26,7 +26,7 @@ public class Shooter : MonoBehaviour
     {
         if (actualJumpInterval <= 0)
         {
-            body.AddForce(new Vector2(0f, 250f));
+            //body.AddForce(new Vector2(0f, 250f));
             actualJumpInterval = jumpsEvery;
         }
         else

@@ -33,12 +33,15 @@ public class Projectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        
         if (!collision.CompareTag("Enemy"))
         {
             Destroy(gameObject);
         }
+    }
 
-
-
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        Destroy(gameObject);
     }
 }
