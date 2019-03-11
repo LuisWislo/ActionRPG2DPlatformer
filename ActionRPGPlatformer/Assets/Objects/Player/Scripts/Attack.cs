@@ -5,6 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     [SerializeField] bool isFast;
+    public float power;
     // Start is called before the first frame update
     void Start()
     {
@@ -28,7 +29,7 @@ public class Attack : MonoBehaviour
     {
         if(collision.tag == "Enemy" || collision.tag == "Projectile")
         {
-            Destroy(collision.gameObject);
+            //Destroy(collision.gameObject);
         }
     }
 }

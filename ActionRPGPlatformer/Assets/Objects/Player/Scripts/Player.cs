@@ -63,7 +63,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.Log("Crouching: "+ crouching+" Poking: "+poking);
+        //Debug.Log("Crouching: "+ crouching+" Poking: "+poking);
         crouching = false;
         vertical = Input.GetAxisRaw("Vertical");
         capsule.size = defaultCapsule;

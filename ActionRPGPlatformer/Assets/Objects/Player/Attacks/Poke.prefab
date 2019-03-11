@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6262309096755092071}
   m_Layer: 0
   m_Name: Poke
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,3 +61,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isFast: 1
+  power: 0

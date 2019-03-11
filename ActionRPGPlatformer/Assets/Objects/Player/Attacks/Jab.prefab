@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1066518229475695242}
   m_Layer: 0
   m_Name: Jab
-  m_TagString: Untagged
+  m_TagString: Attack
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -60,3 +60,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00673e54c18495f4bad95ff8259d50c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isFast: 0
+  power: 0
