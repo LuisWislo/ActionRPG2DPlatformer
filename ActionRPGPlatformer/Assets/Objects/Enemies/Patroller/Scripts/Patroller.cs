@@ -38,7 +38,8 @@ public class Patroller : MonoBehaviour
     }
 
     public IEnumerator Die()
-    { 
+    {
+        //Debug.Log("Enemy dying");
         enabled = false;
         GetComponent<Renderer>().enabled = false;
         GetComponent<BoxCollider2D>().enabled = false;
@@ -48,14 +49,18 @@ public class Patroller : MonoBehaviour
 
     public IEnumerator Hit()
     {
-        
-        for(int i = 0; i < 5; i++)
+        GetComponent<EnemyBeing>().canHurt = false;
+        //Debug.Log("Enemy hit");
+        for (int i = 0; i < 5; i++)
         {
             GetComponent<Renderer>().enabled = false;
             yield return new WaitForSeconds(.1f);
             GetComponent<Renderer>().enabled = true;
             yield return new WaitForSeconds(.1f);
         }
+
+        GetComponent<EnemyBeing>().canHurt = true;
+
 
 
     }

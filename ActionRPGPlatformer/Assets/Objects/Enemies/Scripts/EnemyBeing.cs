@@ -11,7 +11,7 @@ public class EnemyBeing : MonoBehaviour
     private float barConstant;
     public Transform healthbar;
     public GameObject wholeBar;
-    bool canHurt;
+    public bool canHurt;
 
     
 
@@ -19,24 +19,27 @@ public class EnemyBeing : MonoBehaviour
     {
         maxLife = life;
         maxScale = healthbar.localScale.x;
-        Debug.Log(maxScale);
+        //Debug.Log("maxLife: "+maxLife);
         barConstant = maxScale / maxLife;
         canHurt = true;
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("canHurt= " + canHurt);
-        Debug.Log(life);
+        /*if (Input.GetKeyDown(KeyCode.L) && canHurt)
+        {
+            removeLifePoints(25f);
+        }
+        Debug.Log("canHurt= " + canHurt);
+        //Debug.Log(life);*/
     }
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Attack"))
+        if (collider.CompareTag("Attack")&&canHurt)
         {
-            removeLifePoints(15f);
+            removeLifePoints(25f);
         }
     }
 
@@ -44,7 +47,9 @@ public class EnemyBeing : MonoBehaviour
     
     public void removeLifePoints(float lifePoints)
     {
+        //Debug.Log("Enemy got hit!");
         this.life -= lifePoints;
+        //Debug.Log("Remaining life: " + life);
         healthbar.localScale -= new Vector3(lifePoints * barConstant, 0f, 0f);
 
         if(this.life<=0)
@@ -52,7 +57,7 @@ public class EnemyBeing : MonoBehaviour
 
             if (name == "Patroller")
             {
-                StopCoroutine(GetComponent<Patroller>().Hit());
+                //StopCoroutine(GetComponent<Patroller>().Hit());
                 Destroy(wholeBar);
                 Instantiate(deathParticle, transform);
                 StartCoroutine(GetComponent<Patroller>().Die());
@@ -62,10 +67,7 @@ public class EnemyBeing : MonoBehaviour
         {
             if (name == "Patroller")
             {
-                StopCoroutine(GetComponent<Patroller>().Hit());
-                canHurt = false;
                 StartCoroutine(GetComponent<Patroller>().Hit());
-                canHurt = true;
             }
             
         }
