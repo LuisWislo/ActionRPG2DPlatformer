@@ -4,32 +4,39 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField] bool isFast;
-    public float power;
+    Player ply;
+    public int attackNo; //0 Jab    1 Poke  2 Nair
     // Start is called before the first frame update
     void Start()
     {
-        
+        ply = FindObjectOfType<Player>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(Action());
-    }
-
-    IEnumerator Action()
-    {
-        float wait = isFast ? 0.2f : 0.4f;
-        yield return new WaitForSeconds(wait);
-        Destroy(gameObject);
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if(collision.tag == "Enemy" || collision.tag == "Projectile")
+        switch (attackNo)
         {
-            //Destroy(collision.gameObject);
+            case 0:
+                if (!ply.jabbing)
+                {
+                    Destroy(gameObject);
+                }
+                break;
+            case 1:
+                if (!ply.poking)
+                {
+                    Destroy(gameObject);
+                }
+                break;
+            case 2:
+                if (!ply.nairing)
+                {
+                    Destroy(gameObject);
+                }
+                break;
+            default:
+                break;
         }
     }
 }

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 59726f42a347f5a42b7ffd8a28389a8c
+guid: 4ddde00e8e483654eaded3eb9c73c156
 TextureImporter:
   fileIDToRecycleName:
     21300000: Castlevania-esque Tilemap_0
@@ -65,7 +65,7 @@ TextureImporter:
     21300120: Castlevania-esque Tilemap_60
     21300122: Castlevania-esque Tilemap_61
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0

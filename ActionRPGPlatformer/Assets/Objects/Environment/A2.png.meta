@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: b8bcd9c96992d2b4591d97cc8dbc2403
+guid: 1dbd86f91669fd244a243b1ba898aba7
 TextureImporter:
   fileIDToRecycleName:
     21300000: A2_0
@@ -178,7 +178,7 @@ TextureImporter:
     21300346: A2_173
     21300348: A2_174
   externalObjects: {}
-  serializedVersion: 7
+  serializedVersion: 9
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0

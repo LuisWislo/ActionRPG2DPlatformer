@@ -37,16 +37,6 @@ public class Patroller : MonoBehaviour
         healthbar.Rotate(0f, 180f, 0f);
     }
 
-    public IEnumerator Die()
-    {
-        //Debug.Log("Enemy dying");
-        enabled = false;
-        GetComponent<Renderer>().enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
-        yield return new WaitForSeconds(1);
-        Destroy(gameObject);
-    }
-
     public IEnumerator Hit()
     {
         GetComponent<EnemyBeing>().canHurt = false;

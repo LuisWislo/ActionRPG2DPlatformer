@@ -10,8 +10,6 @@ public class Player : MonoBehaviour
     private bool grndL;
     private bool walled;
     private bool dashed;
-    private bool jabbing;
-    private bool poking;
     private bool dashing;
     private float xLeft;
     private float xRight;
@@ -20,12 +18,17 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private CameraController camera;
 
+    public bool jabbing;
+    public bool poking;
+    public bool nairing;
+
     public float jumpForce;
     public float runSpeed;
     public float dashForce;
     public float dashDuration;
     public GameObject jab;
     public GameObject poke;
+    public GameObject nair;
     public GameObject deathParticle;
     public GameObject dashParticle;
     public LayerMask groundLayer;
@@ -40,6 +43,10 @@ public class Player : MonoBehaviour
 
     private float vertical;
 
+    // RPG Stuff
+    public int maxHealth, health, attack, defense, lvl, maxExp, currExp;
+    private bool invin;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,13 +58,15 @@ public class Player : MonoBehaviour
         dashed = false;
         jabbing = false;
         poking = false;
+        nairing = false;
         dashing = false;
         xLeft = -0.085f;
         xRight = 0.125f;
         facingVec = 1;
         capsule = gameObject.GetComponent<CapsuleCollider2D>();
         box = gameObject.GetComponent<BoxCollider2D>();
-
+        invin = false;
+        health = maxHealth;
     }
 
     // Update is called once per frame
@@ -103,6 +112,16 @@ public class Player : MonoBehaviour
         if (grounded)
         {
             dashed = false;
+        }
+
+        if (grounded && nairing)
+        {
+            StopCoroutine("Nair");
+            nairing = false;
+        }
+        if (Input.GetButtonDown("Fire1") && !grounded)
+        {
+            StartCoroutine(Nair());
         }
 
         if (vertical < -0.5 && grounded && !jabbing)
@@ -161,9 +180,17 @@ public class Player : MonoBehaviour
         anim.SetBool("jabbing", jabbing);
         anim.SetBool("crouching", crouching);
         anim.SetBool("poking", poking);
+        anim.SetBool("nairing", nairing);
     }
 
-    
+    IEnumerator Nair()
+    {
+        nairing = true;
+        GameObject nairTemp = Instantiate(nair, transform.position + new Vector3(0.1f * facingVec, 0, 0), Quaternion.identity);
+        nairTemp.transform.parent = gameObject.transform;
+        yield return new WaitForSeconds(0.4f);
+        nairing = false;
+    }
 
     IEnumerator Poke()
     {
@@ -178,7 +205,8 @@ public class Player : MonoBehaviour
         dashing = true;
         Instantiate(dashParticle, transform);
         rb.velocity = Vector2.zero;
-        rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal") * dashForce , Input.GetAxisRaw("Vertical") * dashForce), ForceMode2D.Impulse);
+        Vector2 vecNorm = (new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))).normalized;
+        rb.AddForce(vecNorm * dashForce, ForceMode2D.Impulse);
         dashed = true;
         rb.gravityScale = 0;
         yield return new WaitForSeconds(dashDuration);
@@ -215,16 +243,39 @@ public class Player : MonoBehaviour
         Respawn();
     }
 
+    IEnumerator SetInvin(float dur)
+    {
+        invin = true;
+        yield return new WaitForSeconds(dur);
+        invin = false;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Enemy" || collision.tag == "Projectile")
+        if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin))
         {
-            StartCoroutine(Die());
+            EnemyBeing temp = collision.GetComponent<EnemyBeing>();
+            health = health - (temp.attack - defense);
+            if (health <= 0)
+            {
+                StartCoroutine(Die());
+            } else
+            {
+                StartCoroutine(SetInvin(0.1f));
+            }
         }
     }
 
     void Respawn()
     {
+        StopCoroutine("SetInvin");
+        invin = false;
+        health = maxHealth;
+        currExp = (int)Mathf.Floor(currExp * 0.8f);
+        if (currExp < 0)
+        {
+            currExp = 0;
+        }
         rb.velocity = Vector2.zero;
         transform.position = respawnPoint;
         camera.SetRespawnLoc();
