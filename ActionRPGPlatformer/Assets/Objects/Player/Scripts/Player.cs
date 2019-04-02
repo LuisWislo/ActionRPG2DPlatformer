@@ -171,9 +171,7 @@ public class Player : MonoBehaviour
             xRight = -0.13f;
             facingVec = -1;
         }
-
         
-
         anim.SetFloat("speedX", Mathf.Abs(rb.velocity.x));
         anim.SetFloat("speedY", rb.velocity.y);
         anim.SetBool("grounded", grounded);
@@ -246,22 +244,31 @@ public class Player : MonoBehaviour
     IEnumerator SetInvin(float dur)
     {
         invin = true;
-        yield return new WaitForSeconds(dur);
+        for(int i = 0; i < 5; i++)
+        {
+            GetComponent<Renderer>().enabled = false;
+            yield return new WaitForSeconds(dur/5);
+            GetComponent<Renderer>().enabled = true;
+            yield return new WaitForSeconds(dur / 5);
+        }
         invin = false;
     }
+    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin))
+        EnemyBeing temp = collision.GetComponent<EnemyBeing>();
+
+        if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin) && temp.canGetGurt)
         {
-            EnemyBeing temp = collision.GetComponent<EnemyBeing>();
+            
             health = health - (temp.attack - defense);
             if (health <= 0)
             {
                 StartCoroutine(Die());
             } else
             {
-                StartCoroutine(SetInvin(0.1f));
+                StartCoroutine(SetInvin(0.5f));
             }
         }
     }
