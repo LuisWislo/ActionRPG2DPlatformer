@@ -30,6 +30,28 @@ public class EnemyBeing : MonoBehaviour
         canGetGurt = true;
     }
 
+    private void UpdatePlayerStats(Player ply)
+    {
+        if (ply.currExp >= ply.maxExp)
+        {
+            ply.lvl++;
+            ply.currExp = (ply.currExp - ply.maxExp);
+            ply.maxExp = (int)Mathf.Floor(ply.maxExp * 1.2f);
+            ply.attack = (int)Mathf.Floor(ply.attack * 1.2f);
+            ply.defense = (int)Mathf.Floor(ply.defense * 1.2f);
+            ply.UpdateExpBar(0, true);
+
+            if (ply.currExp >= ply.maxExp)
+            {
+                UpdatePlayerStats(ply);
+            }
+        }
+        else
+        {
+            ply.UpdateExpBar(expGiven, false);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collider)
     {
         if (collider.CompareTag("Attack") && canGetGurt)
@@ -43,16 +65,7 @@ public class EnemyBeing : MonoBehaviour
                 canGetGurt = false;
                 Instantiate(deathParticle, transform);
                 ply.currExp += expGiven;
-
-                if (ply.currExp >= ply.maxExp)
-                {
-                    ply.lvl++;
-                    ply.currExp = (ply.currExp - ply.maxExp);
-                    ply.maxExp = (int)Mathf.Floor(ply.maxExp * 1.2f);
-                    ply.attack = (int)Mathf.Floor(ply.attack * 1.2f);
-                    ply.defense = (int)Mathf.Floor(ply.defense * 1.2f);
-                }
-
+                UpdatePlayerStats(ply);
                 StartCoroutine(Die());
             }
 

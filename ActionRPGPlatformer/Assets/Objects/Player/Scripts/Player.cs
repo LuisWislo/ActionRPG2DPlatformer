@@ -1,9 +1,30 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class Player : MonoBehaviour
 {
+
+    //GUI
+    public TextMeshProUGUI expLevelUI;
+    public TextMeshProUGUI expLevelDet;
+    public TextMeshProUGUI attackUI;
+    public TextMeshProUGUI defenseUI;
+
+
+    //For healthbar purposes
+    public Transform healthbar;
+    private float maxScale;
+    private float barConstant;
+    
+
+    //For experiencebar purposes
+    public Transform expBar;
+    private float maxScaleE;
+    private float barConstantE;
+
+
+
     private bool grounded;
     private bool crouching;
     private bool grndR;
@@ -44,12 +65,19 @@ public class Player : MonoBehaviour
     private float vertical;
 
     // RPG Stuff
-    public int maxHealth, health, attack, defense, lvl, maxExp, currExp;
+    public int health, attack, defense, lvl, currExp, maxExp;
     private bool invin;
+    private int maxHealth;
 
     // Start is called before the first frame update
     void Start()
     {
+        //Debug.Log(expBar.localScale);
+        //Debug.Log(currExp + "/" +maxExp);
+        expLevelUI.text = lvl.ToString();
+        expLevelDet.text = currExp + "/" + maxExp;
+        attackUI.text = "A:"+attack.ToString();
+        defenseUI.text = "D:"+defense.ToString();
         camera = FindObjectOfType<CameraController>();
         rb = GetComponent<Rigidbody2D>();
         respawnPoint = transform.position;
@@ -66,12 +94,22 @@ public class Player : MonoBehaviour
         capsule = gameObject.GetComponent<CapsuleCollider2D>();
         box = gameObject.GetComponent<BoxCollider2D>();
         invin = false;
-        health = maxHealth;
+
+        //Setting up healthbar
+        maxHealth = health;
+        maxScale = healthbar.localScale.x;
+        barConstant = maxScale / maxHealth;
+
+        //Setting up expbar
+        maxScaleE = 1;
+        barConstantE = maxScaleE / maxExp;
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        
         //Debug.Log("Crouching: "+ crouching+" Poking: "+poking);
         crouching = false;
         vertical = Input.GetAxisRaw("Vertical");
@@ -181,6 +219,28 @@ public class Player : MonoBehaviour
         anim.SetBool("nairing", nairing);
     }
 
+    public void UpdateExpBar(int expGiven, bool hasLeveledUp)
+    {
+        if (!hasLeveledUp)
+        {
+            expLevelDet.text = currExp + "/" + maxExp;
+            expBar.localScale += new Vector3(expGiven * barConstantE, 0f, 0f);
+        }
+        else
+        {
+            expLevelUI.text = lvl.ToString();
+            attackUI.text = "A:" + attack.ToString();
+            defenseUI.text = "D:" + defense.ToString();
+            expLevelDet.text = currExp + "/" + maxExp;
+            //Debug.Log(currExp + "/" + maxExp);
+            barConstantE = maxScaleE / maxExp;
+            //Debug.Log(barConstantE);
+            expBar.localScale = new Vector3(currExp*barConstantE, 1f, 1f);
+        }
+       
+    }
+    
+
     IEnumerator Nair()
     {
         nairing = true;
@@ -263,6 +323,7 @@ public class Player : MonoBehaviour
         {
             
             health = health - (temp.attack - defense);
+            healthbar.localScale -= new Vector3((temp.attack - defense) * barConstant, 0f, 0f);
             if (health <= 0)
             {
                 StartCoroutine(Die());
