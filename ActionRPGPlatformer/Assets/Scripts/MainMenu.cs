@@ -18,10 +18,13 @@ public class MainMenu : MonoBehaviour
     private bool canMove = true;
     private Vector3 camInit = new Vector3(-23f, 0f, -10f);
     private Vector3 camEnd = new Vector3(11.81f, 0f, -10f);
+    private AudioManager audio;
 
     // Start is called before the first frame update
     void Start()
     {
+        audio = FindObjectOfType<AudioManager>();
+        audio.Play("MenuSong");
         manager = GetComponent<LevelManager>();
         currentSelection = 0;
         cam.transform.position = camInit;
@@ -50,6 +53,7 @@ public class MainMenu : MonoBehaviour
     {
         if (Input.GetButtonDown("Jump"))
         {
+            audio.Stop("MenuSong");
             manager.LoadLevel(currentSelection + 1);
         }
     }
