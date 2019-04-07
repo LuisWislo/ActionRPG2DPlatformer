@@ -54,11 +54,24 @@ public class EnemyBeing : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collider)
     {
-        if (collider.CompareTag("Attack") && canGetGurt)
+        if ((collider.CompareTag("Attack") || collider.CompareTag("plyProjectile")) && canGetGurt)
         {
             Player ply = FindObjectOfType<Player>();
-            health = health - (ply.attack - defense);
-            healthbar.localScale -= new Vector3((ply.attack - defense) * barConstant, 0f, 0f);
+            int damage = 1;
+            if (collider.CompareTag("plyProjectile"))
+            {
+                damage = (int)Mathf.Floor(ply.attack / 2) - defense;
+                Destroy(collider.gameObject);
+            } else
+            {
+                damage = ply.attack - defense;
+            }
+            if (damage <= 0)
+            {
+                damage = 1;
+            }
+            health = health - damage;
+            healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
 
             if (health <= 0)
             {

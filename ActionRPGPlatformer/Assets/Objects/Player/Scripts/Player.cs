@@ -42,6 +42,8 @@ public class Player : MonoBehaviour
     public bool jabbing;
     public bool poking;
     public bool nairing;
+    public bool shooting;
+    public bool shootingAir;
 
     public float jumpForce;
     public float runSpeed;
@@ -54,6 +56,7 @@ public class Player : MonoBehaviour
     public GameObject dashParticle;
     public LayerMask groundLayer;
     public Animator anim;
+    public GameObject bullet;
 
     CapsuleCollider2D capsule;
     BoxCollider2D box;
@@ -88,6 +91,8 @@ public class Player : MonoBehaviour
         poking = false;
         nairing = false;
         dashing = false;
+        shooting = false;
+        shootingAir = false;
         xLeft = -0.085f;
         xRight = 0.125f;
         facingVec = 1;
@@ -109,8 +114,7 @@ public class Player : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-        //Debug.Log("Crouching: "+ crouching+" Poking: "+poking);
+        //--------------------------------------------------------------
         crouching = false;
         vertical = Input.GetAxisRaw("Vertical");
         capsule.size = defaultCapsule;
@@ -133,7 +137,6 @@ public class Player : MonoBehaviour
         grndL = IsGroundedLeft();
         grndR = IsGroundedRight();
         walled = IsWalled();
-
         if(grndL || grndR)
         {
             grounded = true;
@@ -146,55 +149,89 @@ public class Player : MonoBehaviour
         {
             grounded = false;
         }
-
         if (grounded)
         {
             dashed = false;
         }
+        //----------------------------------------------------------------
 
+        // Walk
+        if (!jabbing && !crouching)
+        {
+            rb.velocity = new Vector2(rb.velocity.x + 0.5f * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+        }
+        // Jump
+        if (Input.GetButtonDown("Jump") && !jabbing && !shooting)
+        {
+            if (grounded)
+            {
+                rb.velocity = new Vector2(0, jumpForce);
+            }
+            else if (walled && grndR && !grndL)
+            {
+                rb.velocity = new Vector2(facingVec * -4.5f, jumpForce);
+            }
+        }
+        // Dash
+        if (Input.GetButtonDown("Fire2") && !dashed && !grounded && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !jabbing)
+        {
+            StartCoroutine(Dash());
+        }
+        // Crouch
+        if (vertical < -0.5 && grounded && !jabbing)
+        {
+            crouching = true;
+            Crouch();
+        }
+
+
+        // Sword
         if (grounded && nairing)
         {
             StopCoroutine("Nair");
             nairing = false;
+        }
+        if (Input.GetButtonDown("Fire1") && !jabbing && grounded && !crouching)
+        {
+            StartCoroutine(Jab());
+        }
+        if (Input.GetButtonDown("Fire1") && crouching)
+        {
+            StartCoroutine(Poke());
         }
         if (Input.GetButtonDown("Fire1") && !grounded)
         {
             StartCoroutine(Nair());
         }
 
-        if (vertical < -0.5 && grounded && !jabbing)
-        {
-            crouching = true;
-            Crouch();
-        }
-        if (Input.GetButtonDown("Fire1") && crouching)
-        {
-            StartCoroutine(Poke());
-        }
 
-        if (!jabbing && !crouching)
+        // Shooting
+        if (grounded && shootingAir)
         {
-            rb.velocity = new Vector2(rb.velocity.x + 0.5f * Input.GetAxisRaw("Horizontal"), rb.velocity.y);
+            StopCoroutine("Shoot");
+            shooting = false;
+            shootingAir = false;
         }
-        if (Input.GetButtonDown("Jump") && !jabbing)
+        if (Input.GetButtonDown("Fire3") && !shooting && !jabbing && !dashing && !poking && !nairing)
         {
-            if (grounded)
+            if (grounded && rb.velocity.x == 0 && !crouching)
             {
-                rb.velocity = new Vector2(0, jumpForce);
-            } else if (walled && grndR && !grndL)
+                StartCoroutine(Shoot(0.3f, transform.position + new Vector3(0.3f *facingVec, 0.1f, 0), false));
+            } else if (grounded && rb.velocity.x != 0 && !crouching)
             {
-                rb.velocity = new Vector2(facingVec * -4.5f, jumpForce);
+                StartCoroutine(Shoot(0.3f, transform.position + new Vector3(0.3f * facingVec, 0.07f, 0), false));
+            } else if (crouching)
+            {
+                StartCoroutine(Shoot(0.2f, transform.position + new Vector3(0.4f * facingVec, -0.15f, 0), false));
+            } else if (!grounded)
+            {
+                shootingAir = true;
+                StartCoroutine(Shoot(0.3f, transform.position + new Vector3(0.2f * facingVec, -0.21f, 0), true));
             }
         }
-        if (Input.GetButtonDown("Fire2") && !dashed && !grounded && (Input.GetAxisRaw("Horizontal") != 0 || Input.GetAxisRaw("Vertical") != 0) && !jabbing)
-        {
-            StartCoroutine(Dash());
-        }
-        if (Input.GetButtonDown("Fire1") && !jabbing && grounded && !crouching)
-        {
-            StartCoroutine(Jab());
-        }
 
+
+        //------------------------------------------------------------
         if (rb.velocity.x > 0)
         {
             transform.localScale = new Vector3(1f, 1f, 1f);
@@ -217,6 +254,7 @@ public class Player : MonoBehaviour
         anim.SetBool("crouching", crouching);
         anim.SetBool("poking", poking);
         anim.SetBool("nairing", nairing);
+        anim.SetBool("shooting", shooting);
     }
 
     public void UpdateExpBar(int expGiven, bool hasLeveledUp)
@@ -313,7 +351,22 @@ public class Player : MonoBehaviour
         }
         invin = false;
     }
-    
+
+    IEnumerator Shoot(float t, Vector2 origin, bool diagonal)
+    {
+        shooting = true;
+        GameObject temp = Instantiate(bullet, origin, Quaternion.identity);
+        if (diagonal)
+        {
+            temp.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * facingVec, -5), ForceMode2D.Impulse);
+        } else
+        {
+            temp.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * facingVec, 0), ForceMode2D.Impulse);
+        }
+        yield return new WaitForSeconds(t);
+        shooting = false;
+        shootingAir = false;
+    }    
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -321,9 +374,13 @@ public class Player : MonoBehaviour
 
         if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin) && temp.canGetGurt)
         {
-            
-            health = health - (temp.attack - defense);
-            healthbar.localScale -= new Vector3((temp.attack - defense) * barConstant, 0f, 0f);
+            int damage = temp.attack - defense;
+            if (damage <= 0)
+            {
+                damage = 1;
+            }
+            health = health - damage;
+            healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
             if (health <= 0)
             {
                 StartCoroutine(Die());
