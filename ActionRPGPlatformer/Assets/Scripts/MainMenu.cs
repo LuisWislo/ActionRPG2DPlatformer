@@ -86,13 +86,13 @@ public class MainMenu : MonoBehaviour
         if (up)
         {
             currentSelection = (int)Mathf.Clamp(--currentSelection, 0, buttons.Length - 1);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             canMove = true;
         }
         else
         {
             currentSelection = (int)Mathf.Clamp(++currentSelection, 0, buttons.Length - 1);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.2f);
             canMove = true;
         }
 
