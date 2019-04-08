@@ -8,6 +8,8 @@ TagManager:
   - Attack
   - Prop
   - Projectile
+  - Ground
+  - plyProjectile
   layers:
   - Default
   - TransparentFX
