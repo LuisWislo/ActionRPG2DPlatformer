@@ -58,6 +58,6 @@ public class CameraController : MonoBehaviour
 
     public void SetRespawnLoc()
     {
-        transform.position = player.transform.position + new Vector3(4, 0f, -10f);
+        transform.position = player.transform.position + new Vector3(4, 4, -10f);
     }
 }
