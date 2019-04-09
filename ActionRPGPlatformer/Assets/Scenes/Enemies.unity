@@ -648,22 +648,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player_Healthbar
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525095294858237, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525095372080075, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525095294858237, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525095372080075, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525095372080075, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525095117361102, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525095372080075, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525095117361102, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -773,22 +773,22 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525094947402647, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525095294858237, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525094947402647, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525095294858237, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525095117361102, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525094947402647, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_havePropertiesChanged
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 7766525095117361102, guid: 5fe18406472569444aa6d40ed7b02791,
+    - target: {fileID: 7766525094947402647, guid: 5fe18406472569444aa6d40ed7b02791,
         type: 3}
       propertyPath: m_isInputParsingRequired
       value: 1
@@ -1116,6 +1116,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8285707780526177411, guid: 4487681fa099265459fef4a8e2df2169,
+        type: 3}
+      propertyPath: health
+      value: 20
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4487681fa099265459fef4a8e2df2169, type: 3}
