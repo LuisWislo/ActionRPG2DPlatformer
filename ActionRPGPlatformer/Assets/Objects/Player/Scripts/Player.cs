@@ -71,7 +71,7 @@ public class Player : MonoBehaviour
     // RPG Stuff
     public int health, attack, defense, lvl, currExp, maxExp;
     private bool invin;
-    private int maxHealth;
+    public int maxHealth;
 
     // Start is called before the first frame update
     void Start()
@@ -131,7 +131,7 @@ public class Player : MonoBehaviour
             rb.velocity = new Vector2(-runSpeed, rb.velocity.y);
         }
 
-        if (transform.position.y < -8)
+        if (transform.position.y < -20)
         {
             StartCoroutine(Die());
         }
@@ -416,6 +416,25 @@ public class Player : MonoBehaviour
             }
         }
         
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if ((collision.collider.tag == "arrow") && (!invin))
+        {
+            int damage = 10;
+            health = health - damage;
+            healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
+            if (health <= 0)
+            {
+                StartCoroutine(Die());
+            }
+            else
+            {
+                StartCoroutine(SetInvin(0.5f));
+            }
+            Destroy(collision.collider.gameObject);
+        }
     }
 
     void Respawn()

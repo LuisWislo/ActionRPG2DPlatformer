@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -491513653
-  m_SortingLayer: 0
+  m_SortingLayerID: 372713887
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 8018ce99b34abb141850a176297d981f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -143,12 +143,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6b49498dc6704d34c96e401ab7b68eb0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForce: 8
+  expLevelUI: {fileID: 0}
+  expLevelDet: {fileID: 0}
+  attackUI: {fileID: 0}
+  defenseUI: {fileID: 0}
+  healthbar: {fileID: 0}
+  expBar: {fileID: 0}
+  jabbing: 0
+  poking: 0
+  nairing: 0
+  shooting: 0
+  shootingAir: 0
+  jumpForce: 9
   runSpeed: 3.5
-  dashForce: 16
+  dashForce: 18
   dashDuration: 0.1
   jab: {fileID: 1277171504326265786, guid: d561eb9790eb23842b540edee246d94d, type: 3}
   poke: {fileID: 754330511290092549, guid: 3f1c999152a1d884090878d35db470cd, type: 3}
+  nair: {fileID: 6216852357706836535, guid: b9700eda6ee17b34f8c719942f8bfc0b, type: 3}
   deathParticle: {fileID: 649048181531175446, guid: 882dde734385f5442ba46adcdafcd6b7,
     type: 3}
   dashParticle: {fileID: 7539727765515594254, guid: 38345249102ec9644859b01001538005,
@@ -157,6 +169,15 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 256
   anim: {fileID: 1190137959}
+  bullet: {fileID: 7874473919008543193, guid: d0f0a0265eac16b4385495032ae57fae, type: 3}
+  bulletGrav: {fileID: 7874473919008543193, guid: 1f2b42746f3920d41b47c78f55151236,
+    type: 3}
+  health: 50
+  attack: 20
+  defense: 10
+  lvl: 1
+  currExp: 0
+  maxExp: 100
 --- !u!95 &1190137959
 Animator:
   serializedVersion: 3
