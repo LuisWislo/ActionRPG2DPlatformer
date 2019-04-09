@@ -427,6 +427,10 @@ public class Player : MonoBehaviour
         if ((collision.collider.tag == "arrow") && (!invin))
         {
             int damage = 10;
+            if (health <= 10)
+            {
+                damage = health - 1;
+            }
             health = health - damage;
             healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
             if (health <= 0)

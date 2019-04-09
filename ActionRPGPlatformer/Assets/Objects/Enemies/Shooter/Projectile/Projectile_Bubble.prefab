@@ -155,6 +155,6 @@ MonoBehaviour:
   wholeBar: {fileID: 8502698818693711566, guid: 764a62399bf088d4da5b48a7f5a25204,
     type: 3}
   health: 1
-  attack: 20
+  attack: 25
   defense: 0
   expGiven: 0

@@ -42,6 +42,7 @@ public class EnemyBeing : MonoBehaviour
             ply.attack = (int)Mathf.Floor(ply.attack * 1.2f);
             ply.defense = (int)Mathf.Floor(ply.defense * 1.2f);
             ply.health = ply.maxHealth;
+            ply.healthbar.localScale = new Vector3(maxScale, 1f, 1f);
             ply.UpdateExpBar(0, true);
 
             if (ply.currExp >= ply.maxExp)

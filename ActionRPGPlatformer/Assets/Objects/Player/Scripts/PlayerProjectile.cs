@@ -24,7 +24,7 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag != "Player")
+        if (collision.tag == "Player" && collision.name != "rightWall" && collision.name != "lefttWall")
         {
             StopAllCoroutines();
             StartCoroutine(Die(0.1f));
