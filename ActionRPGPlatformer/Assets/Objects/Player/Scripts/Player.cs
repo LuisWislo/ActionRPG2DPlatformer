@@ -57,6 +57,7 @@ public class Player : MonoBehaviour
     public LayerMask groundLayer;
     public Animator anim;
     public GameObject bullet;
+    public GameObject bulletGrav;
 
     CapsuleCollider2D capsule;
     BoxCollider2D box;
@@ -216,17 +217,39 @@ public class Player : MonoBehaviour
         {
             if (grounded && rb.velocity.x == 0 && !crouching)
             {
-                StartCoroutine(Shoot(0.3f, transform.position + new Vector3(0.3f *facingVec, 0.1f, 0), false));
+                StartCoroutine(Shoot(bullet, 0.3f, transform.position + new Vector3(0.3f *facingVec, 0.1f, 0), false));
             } else if (grounded && rb.velocity.x != 0 && !crouching)
             {
-                StartCoroutine(Shoot(0.3f, transform.position + new Vector3(0.3f * facingVec, 0.07f, 0), false));
+                StartCoroutine(Shoot(bullet, 0.3f, transform.position + new Vector3(0.3f * facingVec, 0.07f, 0), false));
             } else if (crouching)
             {
-                StartCoroutine(Shoot(0.2f, transform.position + new Vector3(0.4f * facingVec, -0.15f, 0), false));
+                StartCoroutine(Shoot(bullet, 0.2f, transform.position + new Vector3(0.4f * facingVec, -0.15f, 0), false));
             } else if (!grounded)
             {
                 shootingAir = true;
-                StartCoroutine(Shoot(0.3f, transform.position + new Vector3(0.2f * facingVec, -0.21f, 0), true));
+                StartCoroutine(Shoot(bullet, 0.3f, transform.position + new Vector3(0.2f * facingVec, -0.21f, 0), true));
+            }
+        }
+
+
+        if (Input.GetButtonDown("Fire4") && !shooting && !jabbing && !dashing && !poking && !nairing)
+        {
+            if (grounded && rb.velocity.x == 0 && !crouching)
+            {
+                StartCoroutine(Shoot(bulletGrav, 0.2f, transform.position + new Vector3(0.3f * facingVec, 0.1f, 0), false));
+            }
+            else if (grounded && rb.velocity.x != 0 && !crouching)
+            {
+                StartCoroutine(Shoot(bulletGrav, 0.2f, transform.position + new Vector3(0.3f * facingVec, 0.07f, 0), false));
+            }
+            else if (crouching)
+            {
+                StartCoroutine(Shoot(bulletGrav, 0.1f, transform.position + new Vector3(0.4f * facingVec, -0.15f, 0), false));
+            }
+            else if (!grounded)
+            {
+                shootingAir = true;
+                StartCoroutine(Shoot(bulletGrav, 0.2f, transform.position + new Vector3(0.2f * facingVec, -0.21f, 0), true));
             }
         }
 
@@ -352,10 +375,10 @@ public class Player : MonoBehaviour
         invin = false;
     }
 
-    IEnumerator Shoot(float t, Vector2 origin, bool diagonal)
+    IEnumerator Shoot(GameObject obj, float t, Vector2 origin, bool diagonal)
     {
         shooting = true;
-        GameObject temp = Instantiate(bullet, origin, Quaternion.identity);
+        GameObject temp = Instantiate(obj, origin, Quaternion.identity);
         if (diagonal)
         {
             temp.GetComponent<Rigidbody2D>().AddForce(new Vector2(10 * facingVec, -5), ForceMode2D.Impulse);
@@ -396,11 +419,17 @@ public class Player : MonoBehaviour
         StopCoroutine("SetInvin");
         invin = false;
         health = maxHealth;
+        //healthbar
+        healthbar.localScale = new Vector3(maxScale,1f,1f);
+        Debug.Log(healthbar.localScale);
         currExp = (int)Mathf.Floor(currExp * 0.8f);
+        
         if (currExp < 0)
         {
             currExp = 0;
+
         }
+        UpdateExpBar(currExp, true);
         rb.velocity = Vector2.zero;
         transform.position = respawnPoint;
         camera.SetRespawnLoc();

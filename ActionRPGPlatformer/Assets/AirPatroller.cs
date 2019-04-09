@@ -24,16 +24,39 @@ public class AirPatroller : MonoBehaviour
         patroller.velocity = new Vector2(speed * Time.deltaTime * direction, 0f);
 
 
+        if (patroller.velocity.x > 0)
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+        }
+        else if (patroller.velocity.x < 0)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+        }
+
+        if (Mathf.Abs(transform.position.x - leftWall.transform.position.x) < 0.05f)
+        {
+            if (healthbar != null)
+                healthbar.Rotate(0f, 180f, 0f);
+            direction = 1;
+        }
+        else if (Mathf.Abs(transform.position.x - rightWall.transform.position.x) < 0.05f)
+        {
+            if (healthbar != null)
+                healthbar.Rotate(0f, 180f, 0f);
+            direction = -1;
+        }
+
     }
 
-    private void OnTriggerEnter2D(Collider2D collider)
+    /*private void OnTriggerEnter2D(Collider2D collider)
     {
 
         if (GameObject.ReferenceEquals(collider.gameObject, leftWall))
         {
             direction = 1;
             transform.Rotate(new Vector2(0f, 180f));
-            healthbar.Rotate(0f, 180f, 0f);
+            if (healthbar != null)
+                healthbar.Rotate(0f, 180f, 0f);
         }
 
         else if (GameObject.ReferenceEquals(collider.gameObject, rightWall))
@@ -41,10 +64,11 @@ public class AirPatroller : MonoBehaviour
 
             direction = -1;
             transform.Rotate(new Vector2(0f, 180f));
-            healthbar.Rotate(0f, 180f, 0f);
+            if (healthbar != null)
+                healthbar.Rotate(0f, 180f, 0f);
         }
 
-    }
+    }*/
 
     IEnumerator ReleaseEgg()
     {

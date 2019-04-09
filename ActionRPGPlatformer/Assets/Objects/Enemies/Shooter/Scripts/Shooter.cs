@@ -45,14 +45,16 @@ public class Shooter : MonoBehaviour
         if(!facesRight && target.position.x > transform.position.x)
         {
             transform.Rotate(0f, 180f,0f);
-            wholebar.Rotate(0f, 180f, 0f);
+            if(wholebar!=null)
+                wholebar.Rotate(0f, 180f, 0f);
             facesRight = !facesRight;
         }
 
         if(facesRight && target.position.x < transform.position.x)
         {
             transform.Rotate(0f, 180f, 0f);
-            wholebar.Rotate(0f, 180f, 0f);
+            if (wholebar != null)
+                wholebar.Rotate(0f, 180f, 0f);
             facesRight = !facesRight;
         }
     }
