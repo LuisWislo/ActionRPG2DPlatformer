@@ -39,6 +39,7 @@ public class EnemyBeing : MonoBehaviour
             ply.maxExp = (int)Mathf.Floor(ply.maxExp * 1.2f);
             ply.attack = (int)Mathf.Floor(ply.attack * 1.2f);
             ply.defense = (int)Mathf.Floor(ply.defense * 1.2f);
+            ply.health = ply.maxHealth;
             ply.UpdateExpBar(0, true);
 
             if (ply.currExp >= ply.maxExp)
