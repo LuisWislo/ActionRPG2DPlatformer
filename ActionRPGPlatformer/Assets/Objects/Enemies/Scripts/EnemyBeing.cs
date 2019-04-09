@@ -6,6 +6,7 @@ public class EnemyBeing : MonoBehaviour
 {
     
     public bool canGetGurt;
+    public bool isProjectile;
 
     //Effects
     public GameObject deathParticle;
@@ -22,11 +23,12 @@ public class EnemyBeing : MonoBehaviour
 
     void Start()
     {
-        //health = maxHealth;
+
         maxHealth = health;
         maxScale = healthbar.localScale.x;
-        //Debug.Log("maxLife: "+maxLife);
         barConstant = maxScale / maxHealth;
+
+        
         canGetGurt = true;
     }
 
@@ -71,7 +73,8 @@ public class EnemyBeing : MonoBehaviour
                 damage = 1;
             }
             health = health - damage;
-            healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
+            if(!isProjectile)
+                healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
 
             if (health <= 0)
             {
@@ -104,10 +107,12 @@ public class EnemyBeing : MonoBehaviour
 
     public IEnumerator Die()
     {
-        Destroy(wholeBar);
+        if(!isProjectile)
+            Destroy(wholeBar);
         enabled = false;
         GetComponent<Renderer>().enabled = false;
-        GetComponent<BoxCollider2D>().enabled = false;
+        if(!isProjectile)
+            GetComponent<BoxCollider2D>().enabled = false;
         yield return new WaitForSeconds(1);
         Destroy(gameObject.transform.parent.gameObject);
 

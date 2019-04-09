@@ -394,24 +394,28 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         EnemyBeing temp = collision.GetComponent<EnemyBeing>();
-
-        if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin) && temp.canGetGurt)
+        if (temp != null)
         {
-            int damage = temp.attack - defense;
-            if (damage <= 0)
+            if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin) && temp.canGetGurt)
             {
-                damage = 1;
-            }
-            health = health - damage;
-            healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
-            if (health <= 0)
-            {
-                StartCoroutine(Die());
-            } else
-            {
-                StartCoroutine(SetInvin(0.5f));
+                int damage = temp.attack - defense;
+                if (damage <= 0)
+                {
+                    damage = 1;
+                }
+                health = health - damage;
+                healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
+                if (health <= 0)
+                {
+                    StartCoroutine(Die());
+                }
+                else
+                {
+                    StartCoroutine(SetInvin(0.5f));
+                }
             }
         }
+        
     }
 
     void Respawn()
