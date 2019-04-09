@@ -74,8 +74,11 @@ public class EnemyBeing : MonoBehaviour
                 damage = 1;
             }
             health = health - damage;
-            if(!isProjectile)
+            if (!isProjectile)
+            {
                 healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
+            }
+               
 
             if (health <= 0)
             {
@@ -114,6 +117,10 @@ public class EnemyBeing : MonoBehaviour
         GetComponent<Renderer>().enabled = false;
         if(!isProjectile)
             GetComponent<BoxCollider2D>().enabled = false;
+        else
+        {
+            GetComponent<CircleCollider2D>().enabled = false;
+        }
         yield return new WaitForSeconds(1);
         Destroy(gameObject.transform.parent.gameObject);
 

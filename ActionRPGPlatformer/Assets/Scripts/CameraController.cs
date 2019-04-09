@@ -7,6 +7,7 @@ public class CameraController : MonoBehaviour
     private Player player;
 
     public float cameraSpeed;
+    private Vector3 vel = new Vector3(1f, 1f, 1f);
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +23,7 @@ public class CameraController : MonoBehaviour
             if(transform.position.x - player.transform.position.x > 1.5f)
             {
                 transform.position = new Vector3(transform.position.x - cameraSpeed * Time.deltaTime, transform.position.y, transform.position.z);
+                //transform.position = Vector3.SmoothDamp(transform.position, target, ref vel, 0.02f);
             } else if (transform.position.x - player.transform.position.x < 1)
             {
                 transform.position = new Vector3(transform.position.x + cameraSpeed * Time.deltaTime, transform.position.y, transform.position.z);

@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class Projectile : MonoBehaviour
 {
+    public GameObject collisionParticle;
     float projectileSpeed = 1.5f;
     private Transform target;
     private Vector2 displacement;
@@ -36,12 +37,17 @@ public class Projectile : MonoBehaviour
         
         if (!collision.CompareTag("Enemy"))
         {
-            Destroy(gameObject);
+            Instantiate(collisionParticle, transform);
+            GetComponent<CircleCollider2D>().enabled = false;
+            GetComponent<SpriteRenderer>().enabled = false;
+            Destroy(gameObject,1);
         }
     }
-
+    /*
     private void OnCollisionEnter2D(Collision2D collision)
     {
+        Debug.Log("I love you!");
+        Instantiate(collisionParticle, transform);
         Destroy(gameObject);
-    }
+    }*/
 }

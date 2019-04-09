@@ -95,6 +95,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f122096240b17c5478b6ea68022c18b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  collisionParticle: {fileID: 3260415773323077113, guid: c42261f7521145d469a815f36f596eb9,
+    type: 3}
 --- !u!58 &3950465039562604362
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -146,7 +148,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canGetGurt: 0
   isProjectile: 1
-  deathParticle: {fileID: 8502698818693711566, guid: 764a62399bf088d4da5b48a7f5a25204,
+  deathParticle: {fileID: 3260415773323077113, guid: c42261f7521145d469a815f36f596eb9,
     type: 3}
   healthbar: {fileID: 8502698818693711565, guid: 764a62399bf088d4da5b48a7f5a25204,
     type: 3}

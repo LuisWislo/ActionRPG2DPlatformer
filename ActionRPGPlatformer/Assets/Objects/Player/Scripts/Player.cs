@@ -4,6 +4,7 @@ using UnityEngine;
 using TMPro;
 public class Player : MonoBehaviour
 {
+    private AudioManager audio;
 
     //GUI
     public TextMeshProUGUI expLevelUI;
@@ -76,6 +77,9 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        audio = FindObjectOfType<AudioManager>();
+        if(audio!=null)
+            audio.Play("SettingsSong");
         //Debug.Log(expBar.localScale);
         //Debug.Log(currExp + "/" +maxExp);
         expLevelUI.text = lvl.ToString();
