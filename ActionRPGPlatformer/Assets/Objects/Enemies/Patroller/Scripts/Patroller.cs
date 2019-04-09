@@ -28,11 +28,13 @@ public class Patroller : MonoBehaviour
 
         if (Mathf.Abs(transform.position.x -  leftWall.transform.position.x) < 0.05f)
         {
-            healthbar.Rotate(0f, 180f, 0f);
+            if(healthbar!=null)
+                healthbar.Rotate(0f, 180f, 0f);
             direction = 1;
         } else if (Mathf.Abs(transform.position.x - rightWall.transform.position.x) < 0.05f)
         {
-            healthbar.Rotate(0f, 180f, 0f);
+            if(healthbar != null)
+                healthbar.Rotate(0f, 180f, 0f);
             direction = -1;
         }
     }

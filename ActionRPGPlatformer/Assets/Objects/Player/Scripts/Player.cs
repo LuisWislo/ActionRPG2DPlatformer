@@ -419,11 +419,17 @@ public class Player : MonoBehaviour
         StopCoroutine("SetInvin");
         invin = false;
         health = maxHealth;
+        //healthbar
+        healthbar.localScale = new Vector3(maxScale,1f,1f);
+        Debug.Log(healthbar.localScale);
         currExp = (int)Mathf.Floor(currExp * 0.8f);
+        
         if (currExp < 0)
         {
             currExp = 0;
+
         }
+        UpdateExpBar(currExp, true);
         rb.velocity = Vector2.zero;
         transform.position = respawnPoint;
         camera.SetRespawnLoc();
