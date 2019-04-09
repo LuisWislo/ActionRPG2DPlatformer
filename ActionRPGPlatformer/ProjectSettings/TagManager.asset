@@ -10,6 +10,9 @@ TagManager:
   - Projectile
   - Ground
   - plyProjectile
+  - Tiles
+  - Box
+  - arrow
   layers:
   - Default
   - TransparentFX
