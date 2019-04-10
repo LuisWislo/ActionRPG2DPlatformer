@@ -77,6 +77,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        
         audio = FindObjectOfType<AudioManager>();
         if(audio!=null)
             audio.Play("SettingsSong");
@@ -170,10 +171,12 @@ public class Player : MonoBehaviour
         {
             if (grounded)
             {
+                audio.Play("PlayerJump");
                 rb.velocity = new Vector2(0, jumpForce);
             }
             else if (walled && grndR && !grndL)
             {
+                audio.Play("PlayerJump");
                 rb.velocity = new Vector2(facingVec * -4.5f, jumpForce);
             }
         }
@@ -231,6 +234,7 @@ public class Player : MonoBehaviour
             } else if (!grounded)
             {
                 shootingAir = true;
+                
                 StartCoroutine(Shoot(bullet, 0.3f, transform.position + new Vector3(0.2f * facingVec, -0.21f, 0), true));
             }
         }
@@ -308,6 +312,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Nair()
     {
+        audio.Play("SwordAttack");
         nairing = true;
         GameObject nairTemp = Instantiate(nair, transform.position + new Vector3(0.1f * facingVec, 0, 0), Quaternion.identity);
         nairTemp.transform.parent = gameObject.transform;
@@ -317,6 +322,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Poke()
     {
+        audio.Play("SwordAttack");
         poking = true;
         Instantiate(poke, transform.position + new Vector3(0.5f * facingVec, 0, 0), Quaternion.identity);
         yield return new WaitForSeconds(0.2f);
@@ -326,6 +332,7 @@ public class Player : MonoBehaviour
     IEnumerator Dash()
     {
         dashing = true;
+        audio.Play("PlayerDash");
         Instantiate(dashParticle, transform);
         rb.velocity = Vector2.zero;
         Vector2 vecNorm = (new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"))).normalized;
@@ -347,6 +354,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Jab()
     {
+        audio.Play("SwordAttack");
         rb.velocity = Vector2.zero;
         jabbing = true;
         Instantiate(jab, transform.position + new Vector3(0.25f * facingVec, 0, 0), Quaternion.identity);
@@ -356,6 +364,7 @@ public class Player : MonoBehaviour
 
     IEnumerator Die()
     {
+        audio.Play("PlayerDie");
         Instantiate(deathParticle, transform);
         enabled = false;
         GetComponent<Renderer>().enabled = false;
@@ -368,6 +377,7 @@ public class Player : MonoBehaviour
 
     IEnumerator SetInvin(float dur)
     {
+        audio.Play("PlayerHit");
         invin = true;
         for(int i = 0; i < 5; i++)
         {
@@ -382,6 +392,7 @@ public class Player : MonoBehaviour
     IEnumerator Shoot(GameObject obj, float t, Vector2 origin, bool diagonal)
     {
         shooting = true;
+        audio.Play("GravBullet");
         GameObject temp = Instantiate(obj, origin, Quaternion.identity);
         if (diagonal)
         {
