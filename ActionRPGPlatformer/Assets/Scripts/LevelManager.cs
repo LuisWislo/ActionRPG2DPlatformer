@@ -25,6 +25,7 @@ public class LevelManager : MonoBehaviour
             case 1: SceneManager.LoadScene("Demo"); break;
             case 2: SceneManager.LoadScene("Settings"); break;
             case 3: SceneManager.LoadScene("Credits"); break;
+            case 4: SceneManager.LoadScene("FirstBoss"); break;
         }
     }
 }

@@ -123,7 +123,11 @@ public class EnemyBeing : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = false;
         }
         yield return new WaitForSeconds(1);
-        Destroy(gameObject.transform.parent.gameObject);
-
+        if (isProjectile)
+            Destroy(gameObject);
+        else
+        {
+            Destroy(gameObject.transform.parent.gameObject);
+        }
     }
 }

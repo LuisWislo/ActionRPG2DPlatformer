@@ -79,8 +79,8 @@ public class Player : MonoBehaviour
     {
         
         audio = FindObjectOfType<AudioManager>();
-        if(audio!=null)
-            audio.Play("SettingsSong");
+        //if(audio!=null)
+        //   audio.Play("SettingsSong");
         //Debug.Log(expBar.localScale);
         //Debug.Log(currExp + "/" +maxExp);
         expLevelUI.text = lvl.ToString();
@@ -368,10 +368,12 @@ public class Player : MonoBehaviour
         Instantiate(deathParticle, transform);
         enabled = false;
         GetComponent<Renderer>().enabled = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
         rb.velocity = Vector2.zero;
         yield return new WaitForSeconds(1);
         enabled = true;
         GetComponent<Renderer>().enabled = true;
+        GetComponent<CapsuleCollider2D>().enabled = true;
         Respawn();
     }
 
@@ -413,6 +415,8 @@ public class Player : MonoBehaviour
         {
             if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin) && temp.canGetGurt)
             {
+                takeDamage(temp.attack);
+                /*
                 int damage = temp.attack - defense;
                 if (damage <= 0)
                 {
@@ -427,10 +431,29 @@ public class Player : MonoBehaviour
                 else
                 {
                     StartCoroutine(SetInvin(0.5f));
-                }
+                }*/
             }
         }
         
+    }
+
+    public void takeDamage(int attackVal)
+    {
+        int damage = attackVal - defense;
+        if (damage <= 0)
+        {
+            damage = 1;
+        }
+        health = health - damage;
+        healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
+        if (health <= 0)
+        {
+            StartCoroutine(Die());
+        }
+        else
+        {
+            StartCoroutine(SetInvin(0.5f));
+        }
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -474,7 +497,10 @@ public class Player : MonoBehaviour
         UpdateExpBar(currExp, true);
         rb.velocity = Vector2.zero;
         transform.position = respawnPoint;
-        camera.SetRespawnLoc();
+        if (GameObject.Find("boss") == null)
+        {
+            camera.SetRespawnLoc();
+        }
     }
 
     bool IsGroundedLeft()

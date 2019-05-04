@@ -10,10 +10,15 @@ public class arrowScript : MonoBehaviour
     private static GameObject clone1, clone2, clone3;
     public Tilemap tilem;
     public bool shoot;
+    private AudioManager audio;
 
     void Start()
     {
-        //StartCoroutine(Die());
+        if (shoot)
+        {
+            audio = FindObjectOfType<AudioManager>();
+            audio.Play("SettingsSong");
+        }
     }
 
     // Update is called once per frame

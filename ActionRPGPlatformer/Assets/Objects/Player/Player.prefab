@@ -178,6 +178,7 @@ MonoBehaviour:
   lvl: 1
   currExp: 0
   maxExp: 100
+  maxHealth: 0
 --- !u!95 &1190137959
 Animator:
   serializedVersion: 3
