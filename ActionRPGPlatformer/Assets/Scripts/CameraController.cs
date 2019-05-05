@@ -5,6 +5,10 @@ using UnityEngine;
 public class CameraController : MonoBehaviour
 {
     private Player player;
+    private float distance;
+    public float maxDist;
+    public float moveTowSpeed;
+    public float yOffset;
 
     public float cameraSpeed;
     private Vector3 vel = new Vector3(1f, 1f, 1f);
@@ -20,6 +24,14 @@ public class CameraController : MonoBehaviour
     {
         if (player.enabled)
         {
+            distance = Mathf.Sqrt(((player.transform.position.x - transform.position.x) * (player.transform.position.x - transform.position.x)) + ((player.transform.position.y - transform.position.y) * (player.transform.position.y - transform.position.y)));
+            if (distance > maxDist)
+            {
+                transform.position = Vector3.MoveTowards(transform.position, player.transform.position - new Vector3(0, yOffset, 10), moveTowSpeed * Time.deltaTime);
+            }
+
+
+            /*
             if(transform.position.x - player.transform.position.x > 1.5f)
             {
                 transform.position = new Vector3(transform.position.x - cameraSpeed * Time.deltaTime, transform.position.y, transform.position.z);
@@ -36,7 +48,7 @@ public class CameraController : MonoBehaviour
             else if (transform.position.y - player.transform.position.y < 1)
             {
                 transform.position = new Vector3(transform.position.x, transform.position.y + cameraSpeed * Time.deltaTime, transform.position.z);
-            }
+            }*/
 
             /*if (transform.position.x - player.transform.position.x > 6)
             {

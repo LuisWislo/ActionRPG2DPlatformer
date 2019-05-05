@@ -8,6 +8,8 @@ public class EnemyBeing : MonoBehaviour
     public bool canGetGurt;
     public bool isProjectile;
 
+    public string hurt;
+
     //Effects
     public GameObject deathParticle;
 
@@ -16,14 +18,16 @@ public class EnemyBeing : MonoBehaviour
     private float barConstant;
     public Transform healthbar;
     public GameObject wholeBar;
-    
+
+    private AudioManager audio;
+
     // RPG Stuff
     public int health, attack, defense, expGiven;
-    private int maxHealth;
+    public int maxHealth;
 
     void Start()
     {
-
+        audio = FindObjectOfType<AudioManager>();
         maxHealth = health;
         maxScale = healthbar.localScale.x;
         barConstant = maxScale / maxHealth;
@@ -60,6 +64,7 @@ public class EnemyBeing : MonoBehaviour
     {
         if ((collider.CompareTag("Attack") || collider.CompareTag("plyProjectile")) && canGetGurt)
         {
+            audio.Play(hurt);
             Player ply = FindObjectOfType<Player>();
             int damage = 1;
             if (collider.CompareTag("plyProjectile"))

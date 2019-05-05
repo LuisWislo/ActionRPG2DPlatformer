@@ -213,6 +213,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canGetGurt: 0
+  isProjectile: 0
+  hurt: MonsterHurt
   deathParticle: {fileID: 649048181531175446, guid: 882dde734385f5442ba46adcdafcd6b7,
     type: 3}
   healthbar: {fileID: 664233826360167811}
@@ -396,11 +398,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy_HealthBar
       objectReference: {fileID: 0}
-    - target: {fileID: 6643391636209997468, guid: 9e2688c583acef943bf55748862504cf,
-        type: 3}
-      propertyPath: m_LocalScale.x
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6643391636545592083, guid: 9e2688c583acef943bf55748862504cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -455,6 +452,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643391636209997468, guid: 9e2688c583acef943bf55748862504cf,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e2688c583acef943bf55748862504cf, type: 3}

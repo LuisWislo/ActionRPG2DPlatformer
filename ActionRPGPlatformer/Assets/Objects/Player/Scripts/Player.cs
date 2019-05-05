@@ -39,6 +39,7 @@ public class Player : MonoBehaviour
     private Vector3 respawnPoint;
     private Rigidbody2D rb;
     private CameraController camera;
+    private CameraSecondBoss camera2;
 
     public bool jabbing;
     public bool poking;
@@ -88,6 +89,7 @@ public class Player : MonoBehaviour
         attackUI.text = "A:"+attack.ToString();
         defenseUI.text = "D:"+defense.ToString();
         camera = FindObjectOfType<CameraController>();
+        camera2 = FindObjectOfType<CameraSecondBoss>();
         rb = GetComponent<Rigidbody2D>();
         respawnPoint = transform.position;
         grounded = false;
@@ -413,7 +415,7 @@ public class Player : MonoBehaviour
         EnemyBeing temp = collision.GetComponent<EnemyBeing>();
         if (temp != null)
         {
-            if ((collision.tag == "Enemy" || collision.tag == "Projectile") && (!invin) && temp.canGetGurt)
+            if ((collision.tag == "Enemy" || collision.tag == "Projectile") && temp.canGetGurt)
             {
                 takeDamage(temp.attack);
                 /*
@@ -439,20 +441,23 @@ public class Player : MonoBehaviour
 
     public void takeDamage(int attackVal)
     {
-        int damage = attackVal - defense;
-        if (damage <= 0)
+        if (!invin)
         {
-            damage = 1;
-        }
-        health = health - damage;
-        healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
-        if (health <= 0)
-        {
-            StartCoroutine(Die());
-        }
-        else
-        {
-            StartCoroutine(SetInvin(0.5f));
+            int damage = attackVal - defense;
+            if (damage <= 0)
+            {
+                damage = 1;
+            }
+            health = health - damage;
+            healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
+            if (health <= 0)
+            {
+                StartCoroutine(Die());
+            }
+            else
+            {
+                StartCoroutine(SetInvin(0.5f));
+            }
         }
     }
 
@@ -497,7 +502,13 @@ public class Player : MonoBehaviour
         UpdateExpBar(currExp, true);
         rb.velocity = Vector2.zero;
         transform.position = respawnPoint;
-        if (GameObject.Find("boss") == null)
+        if (GameObject.Find("boss") != null)
+        {
+            
+        } else if (GameObject.Find("SecondBoss") != null)
+        {
+            camera2.SetRespawnLocation();
+        } else
         {
             camera.SetRespawnLoc();
         }

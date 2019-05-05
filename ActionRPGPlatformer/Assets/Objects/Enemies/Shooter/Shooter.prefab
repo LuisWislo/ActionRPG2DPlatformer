@@ -145,9 +145,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2bd0d86b4fe04a947ac88dc89173f7af, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wholebar: {fileID: 3372824681173265512}
+  healthbar: {fileID: 3372824681173265512}
   shootPoint: {fileID: 8285707780848413412}
-  projectile: {fileID: 7331589058301507158, guid: a502a140eb215f64580e7f05a1cb6a27,
+  projectile: {fileID: 3950465039562604359, guid: a502a140eb215f64580e7f05a1cb6a27,
     type: 3}
   shootsEvery: 2
   jumpsEvery: 4
@@ -183,6 +183,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canGetGurt: 0
+  isProjectile: 0
+  hurt: MonsterHurt
   deathParticle: {fileID: 649048181531175446, guid: 882dde734385f5442ba46adcdafcd6b7,
     type: 3}
   healthbar: {fileID: 3372824679495524839}

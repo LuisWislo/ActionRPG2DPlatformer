@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Shooter : MonoBehaviour
 {
-    public Transform wholebar;
+    public Transform healthbar;
     [SerializeField] Transform shootPoint;
     private Rigidbody2D body;
     Transform target;
@@ -45,16 +45,16 @@ public class Shooter : MonoBehaviour
         if(!facesRight && target.position.x > transform.position.x)
         {
             transform.Rotate(0f, 180f,0f);
-            if(wholebar!=null)
-                wholebar.Rotate(0f, 180f, 0f);
+            if(healthbar!=null)
+                healthbar.localScale = new Vector3(-1, 1, 1);
             facesRight = !facesRight;
         }
 
         if(facesRight && target.position.x < transform.position.x)
         {
             transform.Rotate(0f, 180f, 0f);
-            if (wholebar != null)
-                wholebar.Rotate(0f, 180f, 0f);
+            if (healthbar != null)
+                healthbar.localScale = new Vector3(1, 1, 1);
             facesRight = !facesRight;
         }
     }

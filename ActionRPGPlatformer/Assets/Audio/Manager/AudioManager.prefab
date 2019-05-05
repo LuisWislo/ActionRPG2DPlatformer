@@ -98,3 +98,33 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 1
+  - name: SecondBoss
+    clip: {fileID: 8300000, guid: 91958323139235e4ca2b5b2b46949c02, type: 3}
+    volume: 0.7
+    pitch: 1
+    source: {fileID: 0}
+    loop: 1
+  - name: BossJump
+    clip: {fileID: 8300000, guid: c2a0a392e93e75f4090c24c8aa3b6044, type: 3}
+    volume: 1
+    pitch: 0.6
+    source: {fileID: 0}
+    loop: 0
+  - name: BossSword
+    clip: {fileID: 8300000, guid: b557ddee469cb4e49b27eea35e25a347, type: 3}
+    volume: 1
+    pitch: 0.6
+    source: {fileID: 0}
+    loop: 0
+  - name: MonsterHurt
+    clip: {fileID: 8300000, guid: 96669cdd9c383014ebf02572e1169542, type: 3}
+    volume: 1
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0
+  - name: BossHurt
+    clip: {fileID: 8300000, guid: fb3f6b993afc41946bb635f05a67f9af, type: 3}
+    volume: 1
+    pitch: 0.6
+    source: {fileID: 0}
+    loop: 0

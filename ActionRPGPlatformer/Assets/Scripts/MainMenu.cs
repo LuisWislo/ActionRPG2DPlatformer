@@ -54,7 +54,7 @@ public class MainMenu : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             audio.Stop("MenuSong");
-            manager.LoadLevel(4);
+            manager.LoadLevel(currentSelection + 1);
         }
     }
 

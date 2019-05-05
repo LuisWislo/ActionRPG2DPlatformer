@@ -13,6 +13,7 @@ TagManager:
   - Tiles
   - Box
   - arrow
+  - tile_boss
   layers:
   - Default
   - TransparentFX

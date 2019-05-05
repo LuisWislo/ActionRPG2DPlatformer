@@ -1,0 +1,317 @@
+fileFormatVersion: 2
+guid: 5b1d28ae28f6ed04fa9fbff168ab0729
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -1616917007329602385
+    second: dark_jab_0
+  - first:
+      213: -2923753983471029086
+    second: dark_jab_1
+  - first:
+      213: -3036021950779181602
+    second: dark_jab_2
+  - first:
+      213: -609992228465047384
+    second: dark_jab_3
+  - first:
+      213: 5719700994113001631
+    second: dark_jab_4
+  - first:
+      213: 7017238732614375039
+    second: dark_jab_5
+  - first:
+      213: 6312298964500867549
+    second: dark_jab_6
+  - first:
+      213: 3740610648726868192
+    second: dark_jab_7
+  - first:
+      213: 9199348923728604264
+    second: dark_jab_8
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 0
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 32
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 2
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  - serializedVersion: 2
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: dark_jab_0
+      rect:
+        serializedVersion: 2
+        x: 6
+        y: 4
+        width: 24
+        height: 26
+      alignment: 9
+      pivot: {x: 0.36679092, y: 0.5550094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 49484d8b9d779044abc4bd8df3619304
+      internalID: -1616917007329602385
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_1
+      rect:
+        serializedVersion: 2
+        x: 40
+        y: 4
+        width: 22
+        height: 26
+      alignment: 9
+      pivot: {x: 0.27819756, y: 0.5517736}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ff5f3cb7b2397b341a588c9c2ff3baa2
+      internalID: -2923753983471029086
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_2
+      rect:
+        serializedVersion: 2
+        x: 71
+        y: 4
+        width: 24
+        height: 26
+      alignment: 9
+      pivot: {x: 0.32472515, y: 0.5614811}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03d641d542b15f946bde8aee8c9e6a6a
+      internalID: -3036021950779181602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_3
+      rect:
+        serializedVersion: 2
+        x: 103
+        y: 4
+        width: 23
+        height: 26
+      alignment: 9
+      pivot: {x: 0.33539382, y: 0.5614811}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 76db1e16b8375504ebd299b22491ab32
+      internalID: -609992228465047384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_4
+      rect:
+        serializedVersion: 2
+        x: 135
+        y: 4
+        width: 22
+        height: 26
+      alignment: 9
+      pivot: {x: 0.34703273, y: 0.55824524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 10ebf32d372accc4a966c1cf9f9bc67d
+      internalID: 5719700994113001631
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_5
+      rect:
+        serializedVersion: 2
+        x: 167
+        y: 4
+        width: 22
+        height: 26
+      alignment: 9
+      pivot: {x: 0.36232898, y: 0.5550094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d9b546ae79c118f49a74994491ec9a1f
+      internalID: 7017238732614375039
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_6
+      rect:
+        serializedVersion: 2
+        x: 199
+        y: 4
+        width: 17
+        height: 26
+      alignment: 9
+      pivot: {x: 0.44556203, y: 0.55824524}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 30b95a50ec4b20c41854951569d75a34
+      internalID: 6312298964500867549
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_7
+      rect:
+        serializedVersion: 2
+        x: 229
+        y: 4
+        width: 18
+        height: 26
+      alignment: 9
+      pivot: {x: 0.52336967, y: 0.5614811}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3fbeab4e3e9cd1741b63b39231064809
+      internalID: 3740610648726868192
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: dark_jab_8
+      rect:
+        serializedVersion: 2
+        x: 260
+        y: 4
+        width: 18
+        height: 26
+      alignment: 9
+      pivot: {x: 0.58880615, y: 0.5550094}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c5712880c19963d4d91a353f71848b8a
+      internalID: 9199348923728604264
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 29bae10af9347fa4eb03042b10f6ab7e
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -36,13 +36,13 @@ public class AirPatroller : MonoBehaviour
         if (transform.position.x - leftWall.transform.position.x < 0.05f)
         {
             if (healthbar != null)
-                healthbar.Rotate(0f, 180f, 0f);
+                healthbar.localScale = new Vector3(-1, 1, 1);
             direction = 1;
         }
         else if (transform.position.x - rightWall.transform.position.x > 0.05f)
         {
             if (healthbar != null)
-                healthbar.Rotate(0f, 180f, 0f);
+                healthbar.localScale = new Vector3(1, 1, 1);
             direction = -1;
         }
 

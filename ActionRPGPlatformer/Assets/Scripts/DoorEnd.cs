@@ -4,10 +4,12 @@ using UnityEngine;
 
 public class DoorEnd : MonoBehaviour
 {
+    private LevelManager manager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        manager = GetComponent<LevelManager>();
     }
 
     // Update is called once per frame
@@ -20,7 +22,7 @@ public class DoorEnd : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            UnityEditor.EditorApplication.isPlaying = false;
+            manager.LoadLevel(4);
         }
     }
 }

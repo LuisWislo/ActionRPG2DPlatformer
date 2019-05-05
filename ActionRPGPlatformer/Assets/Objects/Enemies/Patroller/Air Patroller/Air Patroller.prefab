@@ -254,6 +254,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   canGetGurt: 0
+  isProjectile: 0
+  hurt: MonsterHurt
   deathParticle: {fileID: 649048181531175446, guid: 882dde734385f5442ba46adcdafcd6b7,
     type: 3}
   healthbar: {fileID: 4849087119129657884}
@@ -403,15 +405,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6643391637231189653, guid: 9e2688c583acef943bf55748862504cf,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 6643391636059308613, guid: 9e2688c583acef943bf55748862504cf,
         type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6643391637231189653, guid: 9e2688c583acef943bf55748862504cf,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9e2688c583acef943bf55748862504cf, type: 3}
