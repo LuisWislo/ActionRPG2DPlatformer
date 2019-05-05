@@ -96,6 +96,7 @@ public class SecondBoss : MonoBehaviour
             {
                 
                 speed += 2;
+                self.attack = Mathf.FloorToInt(self.attack * 1.2f);
                 phase2 = true;
             }
 
@@ -123,7 +124,6 @@ public class SecondBoss : MonoBehaviour
                 {
                     rb.velocity = new Vector2(0, rb.velocity.y);
                 }
-
                 /*if (ply.transform.position.x - transform.position.x > 0 && Mathf.Abs(transform.position.y - ply.transform.position.y) > 0.3f)
                 {
                     rb.velocity = new Vector2(speed, rb.velocity.y);
@@ -249,7 +249,7 @@ public class SecondBoss : MonoBehaviour
     {
         Vector2 position = transform.position + new Vector3(0, -0.3f, 0);
         Vector2 direction = Vector2.right * facing;
-        float distance = 0.5f;
+        float distance = 0.4f;
 
         Debug.DrawRay(position, direction * distance, Color.green);
         RaycastHit2D hit = Physics2D.Raycast(position, direction, distance, groundLayer);
