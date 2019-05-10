@@ -40,6 +40,7 @@ public class EnemyBeing : MonoBehaviour
     {
         if (ply.currExp >= ply.maxExp)
         {
+            audio.Play("LevelUp");
             ply.lvl++;
             ply.currExp = (ply.currExp - ply.maxExp);
             ply.maxExp = (int)Mathf.Floor(ply.maxExp * 1.2f);
@@ -69,7 +70,7 @@ public class EnemyBeing : MonoBehaviour
             int damage = 1;
             if (collider.CompareTag("plyProjectile"))
             {
-                damage = (int)Mathf.Floor(ply.attack / 2) - defense;
+                damage = (int)Mathf.Floor((ply.attack - defense) / 2);
                 Destroy(collider.gameObject);
             } else
             {

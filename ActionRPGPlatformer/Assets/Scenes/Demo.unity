@@ -426,7 +426,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxDist: 2
-  moveTowSpeed: 5
+  moveTowSpeed: 6
   yOffset: -0.4
   cameraSpeed: 5
 --- !u!1001 &361187307

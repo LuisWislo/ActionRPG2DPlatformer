@@ -10592,8 +10592,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0472b2a1e114c0745b3b0216c0717a04, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nairing: 0
+  jabbing: 0
   self: {fileID: 1911146522}
-  att: 0
   grounded: 0
   anim: {fileID: 1911146520}
   groundLayer:
