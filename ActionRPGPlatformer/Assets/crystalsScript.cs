@@ -15,12 +15,12 @@ public class crystalsScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
         floor = tm.GetTile(new Vector3Int(23, 6, 0));
 
         foreach (GameObject pt in platforms)
         {
-            pt.GetComponent<Renderer>().enabled = false;
+            pt.GetComponent<SpriteRenderer>().enabled = false;
             pt.GetComponent<Collider2D>().enabled = false;
         }
 
@@ -37,17 +37,16 @@ public class crystalsScript : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.tag.Equals("plyProjectile") || collision.tag.Equals("test"))
+        if (collision.collider.tag.Equals("bullet") || collision.collider.tag.Equals("test"))
         {
-            Debug.Log("a");
-            if (gameObject.GetComponent<Renderer>().material.color == Color.red)
+            if (gameObject.GetComponent<SpriteRenderer>().material.color == Color.red)
             {
                 switch (gameObject.name)
                 {
-                    case "1":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
+                    case "(1)":
+                        gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
                         Vector3Int[] vs = new Vector3Int[tilePositions.Length];
 
                         for (int i = 0; i < tilePositions.Length; i++)
@@ -62,8 +61,8 @@ public class crystalsScript : MonoBehaviour
 
                         break;
 
-                    case "2":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
+                    case "(2)":
+                        gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
                         Vector3Int[] vc = new Vector3Int[tilePositions.Length];
 
                         for (int i = 0; i < tilePositions.Length; i++)
@@ -77,8 +76,8 @@ public class crystalsScript : MonoBehaviour
 
                         break;
 
-                    case "3":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
+                    case "(3)":
+                        gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
                         Vector3Int[] vt = new Vector3Int[tilePositions.Length];
 
                         for (int i = 0; i < tilePositions.Length; i++)
@@ -92,8 +91,8 @@ public class crystalsScript : MonoBehaviour
 
                         break;
 
-                    case "4":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
+                    case "(4)":
+                        gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
                         Vector3Int[] ve = new Vector3Int[tilePositions.Length];
 
                         for (int i = 0; i < tilePositions.Length; i++)
@@ -107,12 +106,13 @@ public class crystalsScript : MonoBehaviour
 
                         break;
 
-                    case "5":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
+                    case "(5)":
+                        gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
 
+                        Debug.Log(collision.collider.tag);
                         foreach (GameObject pt in platforms)
                         {
-                            pt.GetComponent<Renderer>().enabled = true;
+                            pt.GetComponent<SpriteRenderer>().enabled = true;
                             pt.GetComponent<Collider2D>().enabled = true;
                         }
 
@@ -121,114 +121,8 @@ public class crystalsScript : MonoBehaviour
 
                         break;
 
-                    case "6":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
-                        Vector3Int[] vo = new Vector3Int[tilePositions.Length];
-
-                        for (int i = 0; i < tilePositions.Length; i++)
-                        {
-                            vo[i] = new Vector3Int((int)tilePositions[i].transform.position.x, (int)tilePositions[i].transform.position.y, (int)tilePositions[i].transform.position.z);
-
-                            tm.SetTile(vo[i], floor);
-
-                        }
-
-                        StartCoroutine(wait(25.0f, vo));
-
-                        break;
-
-                    default: break;
-                }
-            }
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.collider.tag.Equals("PlayerProjectile") || collision.collider.tag.Equals("test"))
-        {
-            Debug.Log("b");
-            if (gameObject.GetComponent<Renderer>().material.color == Color.red)
-            {
-                switch (gameObject.name)
-                {
-                    case "1":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
-                        Vector3Int[] vs = new Vector3Int[tilePositions.Length];
-
-                        for (int i = 0; i < tilePositions.Length; i++)
-                        {
-                            vs[i] = new Vector3Int((int)tilePositions[i].transform.position.x, (int)tilePositions[i].transform.position.y, (int)tilePositions[i].transform.position.z);
-
-                            tm.SetTile(vs[i], floor);
-
-                        }
-
-                        StartCoroutine(wait(10.0f, vs));
-
-                        break;
-
-                    case "2":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
-                        Vector3Int[] vc = new Vector3Int[tilePositions.Length];
-
-                        for (int i = 0; i < tilePositions.Length; i++)
-                        {
-                            vc[i] = new Vector3Int((int)tilePositions[i].transform.position.x, (int)tilePositions[i].transform.position.y, (int)tilePositions[i].transform.position.z);
-
-                            tm.SetTile(vc[i], floor);
-                        }
-
-                        StartCoroutine(wait(7.0f, vc));
-
-                        break;
-
-                    case "3":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
-                        Vector3Int[] vt = new Vector3Int[tilePositions.Length];
-
-                        for (int i = 0; i < tilePositions.Length; i++)
-                        {
-                            vt[i] = new Vector3Int((int)tilePositions[i].transform.position.x, (int)tilePositions[i].transform.position.y, (int)tilePositions[i].transform.position.z);
-
-                            tm.SetTile(vt[i], floor);
-                        }
-
-                        StartCoroutine(wait(5.0f, vt));
-
-                        break;
-
-                    case "4":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
-                        Vector3Int[] ve = new Vector3Int[tilePositions.Length];
-
-                        for (int i = 0; i < tilePositions.Length; i++)
-                        {
-                            ve[i] = new Vector3Int((int)tilePositions[i].transform.position.x, (int)tilePositions[i].transform.position.y, (int)tilePositions[i].transform.position.z);
-
-                            tm.SetTile(ve[i], floor);
-                        }
-
-                        StartCoroutine(wait(4.0f, ve));
-
-                        break;
-
-                    case "5":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
-
-                        foreach (GameObject pt in platforms)
-                        {
-                            pt.GetComponent<Renderer>().enabled = true;
-                            pt.GetComponent<Collider2D>().enabled = true;
-                        }
-
-                        StartCoroutine(wait(2.5f));
-
-
-                        break;
-
-                    case "6":
-                        gameObject.GetComponent<Renderer>().material.color = Color.green;
+                    case "(6)":
+                        gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
                         Vector3Int[] vo = new Vector3Int[tilePositions.Length];
 
                         for (int i = 0; i < tilePositions.Length; i++)
@@ -258,7 +152,7 @@ public class crystalsScript : MonoBehaviour
             tm.SetTile(v, null);
         }
 
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
     }
 
 
@@ -277,14 +171,14 @@ public class crystalsScript : MonoBehaviour
 
         foreach(GameObject pt in platforms)
         {
-            pt.GetComponent<Renderer>().enabled = false;
+            pt.GetComponent<SpriteRenderer>().enabled = false;
             pt.GetComponent<Collider2D>().enabled = false;
         }
 
-        gameObject.GetComponent<Renderer>().material.color = Color.red;
+        gameObject.GetComponent<SpriteRenderer>().material.color = Color.red;
     }
 
 }
 
 
-// gameObject.GetComponent<Renderer>().material.color = Color.green;
+// gameObject.GetComponent<SpriteRenderer>().material.color = Color.green;
