@@ -3647,6 +3647,46 @@ PrefabInstance:
       propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.characterCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.wordCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.lineCount
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
+        type: 3}
+      propertyPath: m_textInfo.pageCount
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6115985137789476743, guid: 7e2827e722e0c4a44be7642a094e9d3a,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3750,46 +3790,6 @@ PrefabInstance:
     - target: {fileID: 6115985137789476743, guid: 7e2827e722e0c4a44be7642a094e9d3a,
         type: 3}
       propertyPath: m_Pivot.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137841648689, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.characterCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.wordCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.lineCount
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6115985137667737704, guid: 7e2827e722e0c4a44be7642a094e9d3a,
-        type: 3}
-      propertyPath: m_textInfo.pageCount
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -5456,16 +5456,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   canGetGurt: 1
   isProjectile: 0
+  dead: 0
   hurt: MonsterHurt
   deathParticle: {fileID: 9094221934797534126, guid: 8bcf163ffee5be44081d548fdedc5723,
     type: 3}
   healthbar: {fileID: 849217074}
   wholeBar: {fileID: 849217075}
-  health: 100
-  attack: 20
-  defense: 10
-  expGiven: 5
-  maxHealth: 0
+  health: 300
+  attack: 30
+  defense: 12
+  expGiven: 500
+  maxHealth: 300
 --- !u!114 &1575603698
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5681,7 +5682,7 @@ PrefabInstance:
     - target: {fileID: 7564745603885775333, guid: 0c5988901d38eae4eaab451199185e45,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7564745603885775339, guid: 0c5988901d38eae4eaab451199185e45,
         type: 3}

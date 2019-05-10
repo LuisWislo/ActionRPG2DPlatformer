@@ -24,7 +24,7 @@ public class Player : MonoBehaviour
     private float maxScaleE;
     private float barConstantE;
 
-
+    private Stats stats;
 
     private bool grounded;
     private bool crouching;
@@ -75,19 +75,18 @@ public class Player : MonoBehaviour
     private bool invin;
     public int maxHealth;
 
+    private bool first;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        first = true;
         audio = FindObjectOfType<AudioManager>();
         //if(audio!=null)
         //   audio.Play("SettingsSong");
         //Debug.Log(expBar.localScale);
         //Debug.Log(currExp + "/" +maxExp);
-        expLevelUI.text = lvl.ToString();
-        expLevelDet.text = currExp + "/" + maxExp;
-        attackUI.text = "A:"+attack.ToString();
-        defenseUI.text = "D:"+defense.ToString();
+        
         camera = FindObjectOfType<CameraController>();
         camera2 = FindObjectOfType<CameraSecondBoss>();
         rb = GetComponent<Rigidbody2D>();
@@ -108,8 +107,22 @@ public class Player : MonoBehaviour
         box = gameObject.GetComponent<BoxCollider2D>();
         invin = false;
 
+        stats = FindObjectOfType<Stats>();
+        health = stats.health;
+        attack = stats.attack;
+        defense = stats.defense;
+        lvl = stats.lvl;
+        currExp = stats.currExp;
+        maxExp = stats.maxExp;
+        maxHealth = stats.maxHealth;
+
+        expLevelUI.text = lvl.ToString();
+        expLevelDet.text = currExp + "/" + maxExp;
+        attackUI.text = "A:" + attack.ToString();
+        defenseUI.text = "D:" + defense.ToString();
+
         //Setting up healthbar
-        maxHealth = health;
+        //maxHealth = health;
         maxScale = healthbar.localScale.x;
         barConstant = maxScale / maxHealth;
 
@@ -117,6 +130,8 @@ public class Player : MonoBehaviour
         maxScaleE = 1;
         barConstantE = maxScaleE / maxExp;
 
+        UpdateExpBar(0, true);
+        takeDamage(0);
     }
 
     // Update is called once per frame
@@ -446,7 +461,7 @@ public class Player : MonoBehaviour
             int damage = attackVal - defense;
             if (damage <= 0)
             {
-                damage = 1;
+                damage = 0;
             }
             health = health - damage;
             healthbar.localScale -= new Vector3(damage * barConstant, 0f, 0f);
@@ -456,7 +471,14 @@ public class Player : MonoBehaviour
             }
             else
             {
-                StartCoroutine(SetInvin(0.5f));
+                if (first)
+                {
+                    first = false;
+                }
+                else
+                {
+                    StartCoroutine(SetInvin(0.5f));
+                }
             }
         }
     }
