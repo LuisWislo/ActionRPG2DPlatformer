@@ -27,7 +27,6 @@ public class FirstBossScript : MonoBehaviour
         spawnRing = false;
         changeDir = false;
         audio = FindObjectOfType<AudioManager>();
-        audio.Stop("MenuSong");
         audio.Stop("SettingsSong");
         audio.Play("FirstBoss");
         in_2 = false;

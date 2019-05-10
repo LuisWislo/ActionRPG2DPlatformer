@@ -7,7 +7,7 @@ public class PlayerProjectile : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(Die(3.0f));
+        StartCoroutine(Die(10));
     }
 
     // Update is called once per frame
@@ -24,10 +24,16 @@ public class PlayerProjectile : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.tag == "Player" && collision.name != "rightWall" && collision.name != "lefttWall")
+        if (collision.tag == "Player" && collision.name != "rightWall" && collision.name != "lefttWall" || collision.tag == "crystal")
         {
             StopAllCoroutines();
             StartCoroutine(Die(0.1f));
         }
+
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        StartCoroutine(Die(0.1f));
     }
 }

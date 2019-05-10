@@ -39,7 +39,7 @@ public class crystalsScript : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.collider.tag.Equals("bullet") || collision.collider.tag.Equals("test"))
+        if (collision.collider.tag == "plyProjectile" || collision.collider.tag.Equals("test"))
         {
             if (gameObject.GetComponent<SpriteRenderer>().material.color == Color.red)
             {
@@ -116,7 +116,7 @@ public class crystalsScript : MonoBehaviour
                             pt.GetComponent<Collider2D>().enabled = true;
                         }
 
-                        StartCoroutine(wait(2.5f));
+                        StartCoroutine(wait(10));
 
 
                         break;
@@ -133,7 +133,7 @@ public class crystalsScript : MonoBehaviour
 
                         }
 
-                        StartCoroutine(wait(25.0f, vo));
+                        StartCoroutine(wait(50.0f, vo));
 
                         break;
 
@@ -160,7 +160,7 @@ public class crystalsScript : MonoBehaviour
     {
         yield return new WaitForSeconds(x);
 
-        platforms[2].transform.SetPositionAndRotation(tilePositions[1].transform.position, Quaternion.identity);
+        //platforms[2].transform.SetPositionAndRotation(tilePositions[1].transform.position, Quaternion.identity);
 
         StartCoroutine(waitMo(1.5f));
     }

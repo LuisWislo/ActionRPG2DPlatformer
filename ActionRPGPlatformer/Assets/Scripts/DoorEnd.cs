@@ -22,7 +22,7 @@ public class DoorEnd : MonoBehaviour
     {
         if (collision.collider.tag == "Player")
         {
-            manager.LoadLevel(4);
+            manager.LoadLevel(3);
         }
     }
 }

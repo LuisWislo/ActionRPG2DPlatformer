@@ -37,7 +37,7 @@ public class SecondBoss : MonoBehaviour
         ply = FindObjectOfType<Player>();
         spawn = false;
         audio = FindObjectOfType<AudioManager>();
-        audio.Stop("MenuSong");
+        audio.Stop("SecondLevel");
         GetComponent<SpriteRenderer>().enabled = false;
         heaalth0.enabled = false;
         health1.enabled = false;

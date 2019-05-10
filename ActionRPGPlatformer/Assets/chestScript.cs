@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class chestScript : MonoBehaviour
 {
-    public GameObject chestClosed, chestOpened;
-
+    public GameObject chestClosed;
 
     // Start is called before the first frame update
     void Start()
     {
-        chestOpened.GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<SpriteRenderer>().enabled = false;
     }
 
     // Update is called once per frame
@@ -19,13 +18,13 @@ public class chestScript : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag.Equals("Player"))
         {
             Destroy(chestClosed);
-
-            chestOpened.GetComponent<SpriteRenderer>().enabled = true;
+            other.GetComponent<Player>().hasKey = true;
+            GetComponent<SpriteRenderer>().enabled = true;
         }
     }
 }

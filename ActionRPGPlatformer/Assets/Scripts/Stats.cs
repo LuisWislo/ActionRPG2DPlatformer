@@ -21,6 +21,10 @@ public class Stats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (ply == null)
+        {
+            ply = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+        }
         health = ply.health;
         attack = ply.attack;
         defense = ply.defense;

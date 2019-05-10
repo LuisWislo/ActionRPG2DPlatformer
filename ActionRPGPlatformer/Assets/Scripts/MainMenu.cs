@@ -24,6 +24,8 @@ public class MainMenu : MonoBehaviour
     void Start()
     {
         audio = FindObjectOfType<AudioManager>();
+        audio.Stop("SecondBoss");
+        audio.Stop("MenuSong");
         audio.Play("MenuSong");
         manager = GetComponent<LevelManager>();
         currentSelection = 0;
@@ -54,7 +56,7 @@ public class MainMenu : MonoBehaviour
         if (Input.GetButtonDown("Jump"))
         {
             audio.Stop("MenuSong");
-            manager.LoadLevel(currentSelection + 1);
+            manager.LoadLevel(2);
         }
     }
 

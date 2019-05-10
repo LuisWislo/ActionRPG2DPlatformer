@@ -21,11 +21,13 @@ public class LevelManager : MonoBehaviour
     {
         Debug.Log("load something");
         switch (index)
-        { 
-            case 1: SceneManager.LoadScene("Demo"); break;
-            case 2: SceneManager.LoadScene("Settings"); break;
-            case 3: SceneManager.LoadScene("Credits"); break;
-            case 4: SceneManager.LoadScene("FirstBoss"); break;
+        {
+            case 0: SceneManager.LoadScene("Menu"); break;
+            case 1: SceneManager.LoadScene("Credits"); break;
+            case 2: SceneManager.LoadScene("Demo"); break;
+            case 3: SceneManager.LoadScene("FirstBoss"); break;
+            case 4: SceneManager.LoadScene("Level2a"); break;
+            case 5: SceneManager.LoadScene("SecondBoss"); break;
         }
     }
 }

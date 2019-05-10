@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public TextMeshProUGUI attackUI;
     public TextMeshProUGUI defenseUI;
 
+    public bool hasKey;
 
     //For healthbar purposes
     public Transform healthbar;
@@ -80,6 +81,7 @@ public class Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hasKey = false;
         //first = true;
         audio = FindObjectOfType<AudioManager>();
         //if(audio!=null)
@@ -134,6 +136,7 @@ public class Player : MonoBehaviour
         healthbar.localScale = new Vector3(maxScale, 1f, 1f);
         healthbar.localScale -= new Vector3((maxHealth - health) * barConstant, 0f, 0f);
 
+        StartCoroutine(Stats());
         //takeDamage(0);
     }
 
@@ -306,6 +309,36 @@ public class Player : MonoBehaviour
         anim.SetBool("poking", poking);
         anim.SetBool("nairing", nairing);
         anim.SetBool("shooting", shooting);
+    }
+
+    IEnumerator Stats()
+    {
+        yield return new WaitForSeconds(0.1f);
+        health = stats.health;
+        attack = stats.attack;
+        defense = stats.defense;
+        lvl = stats.lvl;
+        currExp = stats.currExp;
+        maxExp = stats.maxExp;
+        maxHealth = stats.maxHealth;
+
+        expLevelUI.text = lvl.ToString();
+        expLevelDet.text = currExp + "/" + maxExp;
+        attackUI.text = "A:" + attack.ToString();
+        defenseUI.text = "D:" + defense.ToString();
+
+        //Setting up healthbar
+        //maxHealth = health;
+        maxScale = healthbar.localScale.x;
+        barConstant = maxScale / maxHealth;
+
+        //Setting up expbar
+        maxScaleE = 1;
+        barConstantE = maxScaleE / maxExp;
+
+        UpdateExpBar(0, true);
+        healthbar.localScale = new Vector3(maxScale, 1f, 1f);
+        healthbar.localScale -= new Vector3((maxHealth - health) * barConstant, 0f, 0f);
     }
 
     public void UpdateExpBar(int expGiven, bool hasLeveledUp)
