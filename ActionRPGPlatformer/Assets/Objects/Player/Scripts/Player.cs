@@ -75,12 +75,12 @@ public class Player : MonoBehaviour
     private bool invin;
     public int maxHealth;
 
-    private bool first;
+    //private bool first;
 
     // Start is called before the first frame update
     void Start()
     {
-        first = true;
+        //first = true;
         audio = FindObjectOfType<AudioManager>();
         //if(audio!=null)
         //   audio.Play("SettingsSong");
@@ -131,7 +131,10 @@ public class Player : MonoBehaviour
         barConstantE = maxScaleE / maxExp;
 
         UpdateExpBar(0, true);
-        takeDamage(0);
+        healthbar.localScale = new Vector3(maxScale, 1f, 1f);
+        healthbar.localScale -= new Vector3((maxHealth - health) * barConstant, 0f, 0f);
+
+        //takeDamage(0);
     }
 
     // Update is called once per frame
@@ -471,14 +474,14 @@ public class Player : MonoBehaviour
             }
             else
             {
-                if (first)
+                /*if (first)
                 {
                     first = false;
                 }
                 else
-                {
-                    StartCoroutine(SetInvin(0.5f));
-                }
+                {*/
+                StartCoroutine(SetInvin(0.5f));
+                //}
             }
         }
     }
