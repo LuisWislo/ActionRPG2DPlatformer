@@ -7,6 +7,7 @@ public class EnemyBeing : MonoBehaviour
     
     public bool canGetGurt;
     public bool isProjectile;
+    public bool dead;
 
     public string hurt;
 
@@ -32,7 +33,7 @@ public class EnemyBeing : MonoBehaviour
         maxScale = healthbar.localScale.x;
         barConstant = maxScale / maxHealth;
 
-        
+        dead = false;
         canGetGurt = true;
     }
 
@@ -118,6 +119,7 @@ public class EnemyBeing : MonoBehaviour
 
     public IEnumerator Die()
     {
+        dead = true;
         if(!isProjectile)
             Destroy(wholeBar);
         enabled = false;
